@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Generos Musicais</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Archivo:ital,wght@0,100..900;1,100..900&display=swap');
+
+    body{
+      margin:0;
+      font: 16px/1.5 system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, Noto Sans, sans-serif;
+      background: radial-gradient(1200px 800px at 10% -10%, rgba(34,211,238,.06), transparent 60%),
+                  radial-gradient(900px 600px at 110% 10%, rgba(167,139,250,.06), transparent 60%),
+                  #07080a;
+      color:#e5e7eb;
+      font-family: Georgia, 'Times New Roman', Times, serif;
+    }
+
+    .container{max-width:1100px; margin-inline:auto; padding:24px}
+
+    header{
+      position:sticky; top:0; z-index:50;
+      backdrop-filter: blur(8px);
+      background: rgba(17, 20, 29, 0.75);
+      border-bottom:1px solid rgba(148,163,184,.15);
+    }
+    .nav{
+      display:flex; align-items:center; gap:16px; justify-content:space-between;
+      padding:12px 24px; max-width:1100px; margin:auto;
+    }
+    .logo img{
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      border-radius: 100%;
+    }
+    .menu a{
+      text-decoration:none; color:#e5e7eb; padding:8px 12px; border-radius:999px;
+      border:1px solid rgb(255, 255, 255); opacity:.9;
+    }
+    .menu a:hover{border-color:rgba(148,163,184,.35); opacity:1}
+
+    
+    .hero{
+      display:grid; grid-template-columns: 1.2fr .8fr; gap:28px; align-items:center;
+      padding:40px 24px 8px; max-width:1100px; margin:auto;
+    }
+    .hero h1{font-size: clamp(28px, 6vw, 52px); line-height:1.1; margin:0;}
+    .mock{
+      border-radius:16px; overflow:hidden; box-shadow:0 10px 30px rgba(0,0,0,.35);
+      aspect-ratio: 4 / 3; background: #0b1320; border:1px solid rgba(148,163,184,.2);
+      display:grid; grid-template-rows: 42px 1fr;
+    }
+    .mock img{width:100%; height:100%; object-fit:cover; display:block}
+
+    
+    section{padding-block:40px}
+    section h2{font-size: clamp(22px, 4vw, 32px); margin:0 0 12px; font-family: "Archivo", sans-serif;}
+    section p{color:#ffffff; margin:0 0 18px}
+
+    .cards{display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr)); gap:16px}
+   
+    .card {
+  background: linear-gradient(180deg, rgba(148,163,184,.07), rgba(148,163,184,.03));
+  border: 1px solid rgba(148,163,184,.2);
+  border-radius: 16px;
+  padding: 18px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* animação suave */
+}
+
+    .card:hover {
+  transform: scale(1.05); /* aumenta o card levemente */
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.5); /* sombra mais forte */
+}
+
+    .card:hover .chip {
+  display: inline-block; /* mostra o chip quando hover */
+}
+
+    .card img{
+      width: 100%;
+      height: 140px;
+      object-fit: cover;
+      border-radius: 12px;
+      margin-bottom: 10px;
+    }
+    .card h3{margin:8px 0 6px; font-size:18px}
+    .chip{display:inline-block; font-size:12px; color:#0b0f1a; background:#578d5998; padding:2px 8px; border-radius:999px}
+
+    .chip {
+    display: none;
+    }
+
+
+    /* Responsivo */
+    @media (max-width: 820px){
+      .hero{grid-template-columns: 1fr;}
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <nav class="nav">
+      <div class="logo">
+        <img src="Pastel Purple Retro Bold Cafe Logo.png" alt="Logo">
+      </div>
+      <div class="menu">
+        <a href="#sobre">Sobre</a>
+        <a href="#generos">Gêneros</a>
+      </div>
+    </nav>
+  </header>
+
+  <!-- SOBRE -->
+  <section id="sobre" class="container">
+    <h2>Gêneros Musicais</h2>
+    <p>Ouça os gêneros mais famosos dos anos 2000s!</p>
+    <div class="cards" style="margin-top:14px">
+      
+      <article class="card">
+        <img src="https://uploads.tenhomaisdiscosqueamigos.com/2025/03/rW20eE7f-lady-gaga-na-capa-do-disco-mayhem-1320x1320.webp" alt="POP">
+        <span class="chip"></span>
+        <a href="pop.html" target="_blank">POP</a>
+      </article>
+
+      <article class="card">
+        <img src="https://akamai.sscdn.co/tb/letras-blog/wp-content/uploads/2019/10/8331bc6-2916dae0a5961a23705b3ad905e1b247189fd116-1024x608.jpg" alt="ROCK ALTERNATIVO">
+        <span class="chip"></span>
+       <a href="rockAlternativo.html" target="_blank">Rock Alternativo</a>
+      </article>
+
+      <article class="card">
+        <img src="https://www.rollingstone.com/wp-content/uploads/2024/06/My-Chemical-Romance-throwback.jpg?w=1581&h=1054&crop=1" alt="POP PUNK">
+        <span class="chip"></span>
+        <h3>POP PUNK</h3>
+      </article>
+
+      <article class="card">
+        <img src="https://upload.wikimedia.org/wikipedia/en/thumb/8/84/Dangerously_In_Love_Album%282003%29.png/250px-Dangerously_In_Love_Album%282003%29.png" alt="R&B">
+        <span class="chip"></span>
+        <a href="r&b.html" target="_blank">R&B</a>
+      </article>
+
+      <article class="card">
+        <img src="https://www.midiorama.com/wp-content/uploads/2021/12/eminem-untouchable-novo-single-ouca.jpg" alt="HIP HOP">
+        <span class="chip"></span>
+        <h3>HIP HOP</h3>
+      </article>
+
+      <article class="card">
+        <img src="https://cdn-images.dzcdn.net/images/cover/7d4a24e294bb3c228ad96dd75512e2f0/0x1900-000000-80-0-0.jpg" alt="DANCE/ELETRÔNICA">
+        <span class="chip"></span>
+        <h3>DANCE/ELETRÔNICA</h3>
+      </article>
+
+      <article class="card">
+        <img src="https://elimeira.com.br/wp-content/uploads/2019/05/luan-santana.jpg" alt="SERTANEJO">
+        <span class="chip"></span>
+        <h3>SERTANEJO</h3>
+      </article>
+
+      <article class="card">
+        <img src="https://akamai.sscdn.co/uploadfile/letras/fotos/4/1/d/9/41d93e2c6f61d41583b947711bc1a6d8.jpg" alt="FUNK CARIOCA">
+        <span class="chip"></span>
+        <h3>FUNK CARIOCA</h3>
+      </article>
+
+      <article class="card">
+        <img src="https://i.discogs.com/q0Jc79HBbF9IfqW7eXS8lmeNi378SwTcPIs5w3-hEug/rs:fit/g:sm/q:90/h:588/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTc2Nzcw/OTAtMTY4Nzc5NDU3/Ni0zNzUwLnBuZw.jpeg" alt="REGGAE">
+        <span class="chip"></span>
+        <h3>REGGAE</h3>
+      </article>
+
+    </div>
+  </section>
+</body>
+</html>

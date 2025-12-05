@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gênero Musical - R&B</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      color: white;
+      font-family: "Poppins", sans-serif;
+      background-image: url("https://i.pinimg.com/1200x/ba/f0/a3/baf0a380ad1164c78c4d969ee14676e2.jpg");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    .overlay {
+      background: rgba(0,0,0,0.55);
+      min-height: 100vh;
+      padding-bottom: 80px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(8px);
+      background: rgba(0, 0, 0, 0.75);
+      border-bottom: 1px solid rgba(148,163,184,.15);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1100px;
+      margin: auto;
+      padding: 12px 24px;
+    }
+
+    .logo img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      border-radius: 100%;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: #e5e7eb;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid white;
+      opacity: .9;
+    }
+
+    .menu a:hover {
+      opacity: 1;
+      border-color: rgba(255,255,255,0.6);
+    }
+
+    .add-btn {
+      background: #1a121215;
+      border: 1px solid white;
+      color: white;
+      padding: 8px 14px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: .3s;
+    }
+
+    .add-btn:hover {
+      background: white;
+      color: #0b0f18;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 100px;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      font-family: "Pinyon Script", cursive;
+    }
+
+     .intro-container {
+  max-width: 1150px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;  
+  gap: 30px;
+  padding: 20px;
+}
+
+    .texto-rnb {
+      flex: 1 1 42px;
+      background: rgba(0,0,0,0.65);
+      padding: 22px;
+      border-radius: 14px;
+      line-height: 1.6;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+     .img-rnb-era img{
+        width: 500px;
+        height: 500px;
+        border-radius: 14px;
+        border: 1px solid rgba(255,255,255,0.2);
+        object-fit: cover;
+     }
+
+    .music-grid {
+      max-width: 1150px;
+      margin: 60px auto;
+      padding: 0 20px;
+      display: grid;
+      gap: 22px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .music-item {
+      background: rgba(0,0,0,0.65);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: .25s;
+      text-decoration: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    .music-item:hover {
+      transform: scale(1.04);
+      background: rgba(0,0,0,0.8);
+    }
+
+    .music-item img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+
+    .music-item figcaption {
+      text-align: center;
+      padding: 10px;
+      font-size: 15px;
+    }
+
+    /* janela de add msc */
+    .modal-bg {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(6px);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .modal {
+      background: rgba(0,0,0,0.75);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 16px;
+      padding: 25px;
+      width: 350px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .modal h2 {
+      text-align: center;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    .modal input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.4);
+      background: rgba(255,255,255,0.1);
+      color: white;
+    }
+
+    .modal button {
+      width: 100%;
+      padding: 10px;
+      background: white;
+      color: black;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: .2s;
+    }
+
+    .modal button:hover {
+      background: #d8d8d8;
+    }
+
+    .close-btn {
+       background: #362b09 !important; 
+      /* sempre mudar essa cor do background de acordo com a estética do genero, ele é o botao de cancelar o add de uma musica nova no pop-up */ 
+      color: white !important;
+      margin-top: 5px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="overlay">
+  <header>
+    <nav class="nav">
+      <div class="logo">
+        <img src="" alt="Logo Lismelt">
+      </div>
+
+      <div class="menu">
+        <a href="index.html#sobre">Sobre</a>
+        <a href="index.html#generos">Gêneros</a>
+
+      </div>
+    </nav>
+  </header>
+
+  <h1>R&B</h1>
+
+  <!-- sobre o genero -->
+  <div class="intro-container">
+    <div class="texto-rnb">
+      <p>O R&B dos anos 2000 misturava sensualidade, romantismo e estética urbana, com batidas suaves, vocais marcentes e forte influencia do hip-hop.</p>
+      <p>Foi a era de videoclipes elegantes, looks street fashion e artistas como Usher, Aaliyah, Beyoncé, Alicia Keys e Ne-Yo moldando o som da década.</p>
+      <p>Veja abaixo as músicas do R&B que foram ascensão na época e adicione as suas favoritas que você acha que estão faltam aqui.</p>
+    </div>
+
+    <div class="img-rnb-era">
+      <img src="https://i.pinimg.com/736x/b2/2e/57/b22e57bcd3afbe6b26ccdc5410923022.jpg" alt="R&B 2000s">
+    </div>
+  </div>
+
+  <!-- musicas -->
+  <section class="music-grid" id="musicGrid">
+
+    <a class="music-item" href="https://www.youtube.com/watch?v=C8QJmI_V3j4" target="_blank">
+      <img src="https://i.discogs.com/k7oq1IVtFk9G6RAEq8z04iztEwNqfLnZRS8te-9RDSo/rs:fit/g:sm/q:40/h:300/w:300/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE2MzA0/ODAtMTQ1MTMxMTk3/MS0zNzEzLmpwZWc.jpeg">
+      <figcaption>By Your Side - Sade (2000)</figcaption>
+    </a>
+
+    <a class="music-item" href="https://www.youtube.com/watch?v=qTA0RuZoIxM" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/en/1/13/Try_Again.png">
+      <figcaption>Try Again - Aaliyah (2000)</figcaption>
+    </a>
+
+    <a class="music-item" href="https://www.youtube.com/watch?v=Wmc8bQoL-J0" target="_blank">
+      <img src="https://akamai.sscdn.co/tb/letras-blog/wp-content/uploads/2021/09/d2ce8a9-destinys-child-survivor-1024x1024.jpg">
+      <figcaption>Survivor - Destiny's Child (2001)</figcaption>
+    </a>
+
+    <a class="music-item" href="https://www.youtube.com/watch?v=Urdlvw0SSEc" target="_blank">
+      <img src="https://i.discogs.com/HTKNGDiNd9cwzLAp4nue680Gmvpqm2l_MikOPivl5W4/rs:fit/g:sm/q:40/h:300/w:300/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTg4MDM1/Ni0xMTY4NjE1MDA5/LmpwZWc.jpeg">
+      <figcaption>Fallin - Alicia Keys (2001)</figcaption>
+    </a>
+
+    <a class="music-item" href="https://www.youtube.com/watch?v=o3IWTfcks4k" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/en/b/bb/Usher_-_U_Got_It_Bad.png">
+      <figcaption>U Got It Bad - Usher (2001)</figcaption>
+    </a>
+
+    <a class="music-item" href="https://www.youtube.com/watch?v=3HSJU5fDg0A" target="_blank">
+      <img src="https://i.discogs.com/MUUnd4PR1gWDaZp3Jn1wpQ98jhEkWuPj5mwb-a43EC0/rs:fit/g:sm/q:40/h:300/w:300/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTEyMjM1/NTctMTc0NzMzMjMx/MS03ODI2LmpwZWc.jpeg">
+      <figcaption>Rock The Boat - Aaliyah (2001)</figcaption>
+    </a>
+
+    <a class="music-item" href="https://www.youtube.com/watch?v=ViwtNLUqkMY" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/pt/4/4b/Beyonc%C3%A9_-_Crazy_in_Love.jpg">
+      <figcaption>Crazy In Love - Beyoncé feat. Jay-Z (2003)</figcaption>
+    </a>
+
+    <a class="music-item" href="https://www.youtube.com/watch?v=Ju8Hr50Ckwk" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/pt/thumb/7/7c/Alicia_Keys_-_If_I_Ain%27t_Got_You.jpg/250px-Alicia_Keys_-_If_I_Ain%27t_Got_You.jpg">
+      <figcaption>iF I Ain't Got You - Alicia Keys (2003)</figcaption>
+    </a>
+
+    <a class="music-item" href="https://www.youtube.com/watch?v=0habxsuXW4g" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/pt/6/6f/Webelongtogether.jpg">
+      <figcaption>We Belong Together - Mariah Carey (2005)</figcaption>
+    </a>
+
+    <a class="music-item" href="https://www.youtube.com/watch?v=IxszlJppRQI" target="_blank">
+      <img src="https://i.discogs.com/gYFO-Tv2woFW66YEuUHZuYjm1K7sH5c4pPufYxIf43M/rs:fit/g:sm/q:90/h:522/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE2MzY5/MzAtMTYxMTQwMDU0/OC0zMzU1LmpwZWc.jpeg">
+      <figcaption>So Sick - Ne-Yo (2006)</figcaption>
+    </a>
+
+    <a class="music-item" href="https://www.youtube.com/watch?v=2EwViQxSJJQ" target="_blank">
+      <img src="https://upload.wikimedia.org/wikipedia/pt/3/37/Beyonc%C3%A9_-_Irreplaceable.jpg">
+      <figcaption>Irreplaceable - Beyoncé (2006)</figcaption>
+    </a>
+
+    <a class="music-item" href="https://www.youtube.com/watch?v=WBKnpyoFEBo" target="_blank">
+      <img src="https://is1-ssl.mzstatic.com/image/thumb/Music124/v4/31/e6/56/31e6567f-76e9-1253-b0b3-93def9ab32f8/mzi.movdidsa.jpg/1200x630bf-60.jpg">
+      <figcaption>No Air - Jordin Sparks feat. Chris Brown (2007)</figcaption>
+    </a>
+
+    <!-- botao de add musica -->
+    <div class="music-item" onclick="openModal()" style="display:flex; justify-content:center; align-items:center; font-weight:600;">
+      <figcaption>+ Adicionar Música</figcaption>
+    </div>
+
+  </section>
+
+</div>
+
+<!-- janela para add musicas -->
+<div class="modal-bg" id="modal-bg">
+  <div class="modal">
+    <h2>Adicione A Sua Música R&B Favorita!</h2>
+
+    <input id="titulo" type="text" placeholder="Nome da Música" />
+    <input id="artista" type="text" placeholder="Artista" />
+    <input id="ano" type="number" placeholder="Ano(2000/2010)" min="2000" max="2010"/>
+    <input id="imagem" type="text" placeholder="URL da capa" />
+    <input id="link" type="text" placeholder="Link da música" />
+
+    <button onclick="addMusic()">Adicionar</button>
+    <button class="close-btn" onclick="closeModal()">Cancelar</button>
+  </div>
+</div>
+
+<script>
+function openModal() {
+  document.getElementById("modal-bg").style.display = "flex";
+}
+
+function closeModal() {
+  document.getElementById("modal-bg").style.display = "none";
+}
+
+function addMusic() {
+  const titulo = document.getElementById("titulo").value;
+  const artista = document.getElementById("artista").value;
+  const ano = document.getElementById("ano").value;
+  const imagem = document.getElementById("imagem").value;
+  const link = document.getElementById("link").value;
+
+  if (!titulo || !artista || !ano || !imagem || !link) {
+    alert("Preencha todos os campos!");
+    return;
+  }
+
+  const card = document.createElement("a");
+  card.className = "music-item";
+  card.href = link;
+  card.target = "_blank";
+
+  card.innerHTML = `
+    <img src="${imagem}">
+    <figcaption>${titulo} - ${artista} (${ano})</figcaption>
+  `;
+
+  document.getElementById("musicGrid").appendChild(card);
+
+  closeModal();
+  
+  document.getElementById("titulo").value = "";
+  document.getElementById("artista").value = "";
+  document.getElementById("ano").value = "";
+  document.getElementById("imagem").value = "";
+  document.getElementById("link").value = "";
+}
+</script>
+</body>
+</html>
