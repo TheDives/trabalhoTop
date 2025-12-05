@@ -2,6 +2,8 @@ package com.senai.apicadastro.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -9,6 +11,7 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 public class Genero {
 	
 	@Entity
@@ -19,16 +22,17 @@ public class Genero {
 		@GeneratedValue(strategy = GenerationType.IDENTITY)
 		private Long id;
 		
-		// @NotBlank(message = "O gênero da musica é obrigatório")
-		// @Column(name = "genero_musica", unique = true)
+		@NotBlank(message = "O gênero da musica é obrigatório")
+		@Column(name = "genero_musica")
 		private String generoMusica;
 		
-		// @NotBlank(message = "A história do genero não deve estar vazia.")
+		@NotBlank(message = "A história do genero não deve estar vazia.")
 		@Column(name = "historia_genero", nullable = false)
 		private String historiaGenero;
 		
+		@JsonIgnore
 	    @OneToMany(mappedBy = "generoMusica")
-	    private List<Genero> musicas;
+	    private List<Musica> musicas;
 	    
 	    
 		public genero() {}
