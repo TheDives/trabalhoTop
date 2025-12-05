@@ -22,11 +22,6 @@ public class Musica {
     @Column(name = "titulo_musica", nullable = false)
     private String tituloMusica;
 
-    @NotBlank(message = "O nível de popularidade não deve estar vazio.")
-    @Size(min = 1, max = 5, message = "A música não deve ultrapassar 5 estrelas.")
-    @Column(name = "nivel_popularidade", nullable = false, length = 5)
-    private String nivelPopularidade;
-
     @Min(value = 2000, message = "O ano deve ser posterior a 2000")
     @Column(nullable = false)
     private int ano;
@@ -58,13 +53,6 @@ public class Musica {
         this.tituloMusica = tituloMusica;
     }
 
-    public String getNivelPopularidade() {
-        return nivelPopularidade;
-    }
-
-    public void setNivelPopularidade(String nivelPopularidade) {
-        this.nivelPopularidade = nivelPopularidade;
-    }
 
     public int getAno() {
         return ano;
