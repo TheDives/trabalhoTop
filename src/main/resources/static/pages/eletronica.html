@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gênero Musical - Dance/Eletronica</title>
+  <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+    body {
+      margin: 0;
+      background: #000;
+      color: white;
+      font-family: "Poppins", sans-serif;
+      background-image: url("https://i.pinimg.com/736x/3a/e8/f2/3ae8f2d3eab64011eeecf50bcbb8b42e.jpg");
+      background-size: cover;
+      background-position: center;
+      background-attachment: fixed;
+    }
+
+    .overlay {
+      background: rgba(0,0,0,0.55);
+      min-height: 100vh;
+      padding-bottom: 80px;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      backdrop-filter: blur(8px);
+      background: rgba(0, 0, 0, 0.75);
+      border-bottom: 1px solid rgba(148,163,184,.15);
+    }
+
+    .nav {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      max-width: 1100px;
+      margin: auto;
+      padding: 12px 24px;
+    }
+
+    .logo img {
+      width: 100px;
+      height: 100px;
+      object-fit: contain;
+      border-radius: 100%;
+    }
+
+    .menu {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .menu a {
+      text-decoration: none;
+      color: #e5e7eb;
+      padding: 8px 12px;
+      border-radius: 999px;
+      border: 1px solid white;
+      opacity: .9;
+    }
+
+    .menu a:hover {
+      opacity: 1;
+      border-color: rgba(255,255,255,0.6);
+    }
+
+    .add-btn {
+      background: #1a121215;
+      border: 1px solid white;
+      color: white;
+      padding: 8px 14px;
+      border-radius: 50px;
+      cursor: pointer;
+      font-size: 14px;
+      transition: .3s;
+    }
+
+    .add-btn:hover {
+      background: white;
+      color: #0b0f18;
+    }
+
+    h1 {
+      text-align: center;
+      font-size: 100px;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      font-family: "Pinyon Script", cursive;
+    }
+
+     .intro-container {
+  max-width: 1150px;
+  margin: auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: nowrap;  
+  gap: 30px;
+  padding: 20px;
+}
+
+    .texto-pop {
+      flex: 1 1 42px;
+      background: rgba(0,0,0,0.65);
+      padding: 22px;
+      border-radius: 14px;
+      line-height: 1.6;
+      border: 1px solid rgba(255,255,255,0.15);
+    }
+
+     .img-pop-era img{
+        width: 500px;
+        height: 500px;
+        border-radius: 14px;
+        border: 1px solid rgba(255,255,255,0.2);
+        object-fit: cover;
+     }
+
+    .music-grid {
+      max-width: 1150px;
+      margin: 60px auto;
+      padding: 0 20px;
+      display: grid;
+      gap: 22px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .music-item {
+      background: rgba(0,0,0,0.65);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 14px;
+      overflow: hidden;
+      transition: .25s;
+      text-decoration: none;
+      color: white;
+      cursor: pointer;
+    }
+
+    .music-item:hover {
+      transform: scale(1.04);
+      background: rgba(0,0,0,0.8);
+    }
+
+    .music-item img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+    }
+
+    .music-item figcaption {
+      text-align: center;
+      padding: 10px;
+      font-size: 15px;
+    }
+
+    /* janela de add msc */
+    .modal-bg {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      backdrop-filter: blur(6px);
+      justify-content: center;
+      align-items: center;
+      z-index: 999;
+    }
+
+    .modal {
+      background: rgba(0,0,0,0.75);
+      border: 1px solid rgba(255,255,255,0.2);
+      border-radius: 16px;
+      padding: 25px;
+      width: 350px;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .modal h2 {
+      text-align: center;
+      margin-bottom: 15px;
+      font-weight: 600;
+    }
+
+    .modal input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 12px;
+      border-radius: 10px;
+      border: 1px solid rgba(255,255,255,0.4);
+      background: rgba(255,255,255,0.1);
+      color: white;
+    }
+
+    .modal button {
+      width: 100%;
+      padding: 10px;
+      background: white;
+      color: black;
+      border: none;
+      border-radius: 10px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: .2s;
+    }
+
+    .modal button:hover {
+      background: #d8d8d8;
+    }
+
+    .close-btn {
+      background: #ff4df6 !important;
+      color: white !important;
+      margin-top: 5px;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(.8); }
+      to { opacity: 1; transform: scale(1); }
+    }
+
+  </style>
+</head>
+<body>
+
+<div class="overlay">
+  <header>
+    <nav class="nav">
+      <div class="logo">
+        <img src="" alt="Logo Lismelt">
+      </div>
+
+      <div class="menu">
+        <a href="index.html#sobre">Sobre</a>
+        <a href="index.html#generos">Gêneros</a>
+
+      </div>
+    </nav>
+  </header>
+
+  <h1>Eletronic Dance</h1>
+
+  <!-- sobre o genero -->
+  <div class="intro-container">
+    <div class="texto-pop">
+      <p>EDM (Electronic Dance Music) é um termo genérico que se refere a uma ampla variedade de gêneros musicais semelhantes (mas não idênticos)</p>
+      <p> A música quase sempre tem uma faixa de percussão repetitiva e normalmente inclui uma melodia tocada por um sintetizador sobreposta à bateria.</p>
+      <p>Veja abaixo as músicas do dance/eletrônica que foram ascensão na época e adicione as suas favoritas que você acha que faltam aqui.</p>
+    </div>
+
+    <div class="img-pop-era">
+      <img src="https://i.pinimg.com/736x/27/74/20/277420c18fa1ee378aa025ab90f615f6.jpg" alt="Pop 2000s">
+    </div>
+  </div>
+
+  <!-- musicas -->
+  <section class="music-grid" id="musicGrid">
+
+    <a class="music-item" href="https://youtu.be/4G6QDNC4jPs?si=yJ7kkVaaNsoji_sL" target="_blank">
+      <img src="https://i.discogs.com/uJ2ePQf_3ot_aSSAzav1bKR84l4xJkddgrUnKs4Bnyk/rs:fit/g:sm/q:90/h:600/w:600/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTE5ODQy/NjUtMTM2NDY1MjIy/NC0xNjM2LmpwZWc.jpeg">
+      <figcaption>Everytime We Touch - Cascada (2006)</figcaption>
+    </a>
+
+    <a class="music-item" href="https://youtu.be/-wZl_ZhnVg4?si=du6qERLv7_foHoFS" target="_blank">
+      <img src="https://akamai.sscdn.co/uploadfile/letras/albuns/4/b/b/b/9457.jpg">
+      <figcaption>Can't get over - Kasino (2005)</figcaption>
+    </a>
+
+    <a class="music-item" href="https://youtu.be/0aa7KWLkzXc?si=TcShCo0se3taRNuY" target="_blank">
+      <img src="https://i.discogs.com/vltLhvu06hTyKDhYzrb9h7kdSRNlkRUaETSkKF3X3q4/rs:fit/g:sm/q:90/h:590/w:596/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTY1OTcw/My0xMjk4ODk4OTg3/LmpwZWc.jpeg">
+      <figcaption>Castles in The Sky - Ian Van Dahl (2002)</figcaption>
+    </a>
+    
+    <a class="music-item" href="https://youtu.be/dguyGKl6oCg?si=VY6ak-coDN3-0xQa" target="_blank">
+      <img src="https://cdn-images.dzcdn.net/images/cover/15b80fc14940672919c7f5480e1fe678/0x1900-000000-80-0-0.jpg">
+      <figcaption>Alone - Lasgo (2001)</figcaption>
+    </a>
+
+    <a class="music-item" href="https://youtu.be/FGBhQbmPwH8?si=HQmlrqrjwvuo_xjv" target="_blank">
+      <img src="https://i1.sndcdn.com/artworks-MksKW39X2wYwAtFF-ngUDow-t1080x1080.jpg">
+      <figcaption>One More Time - Daft Punk (2001)</figcaption>
+    </a>
+
+    <a class="music-item" href="https://youtu.be/v0NSeysrDYw?si=ACDXGRN_QlaNWIe1" target="_blank">
+      <img src="https://i.discogs.com/Y28rPXMPhO4wdtQ8Xp6uHa72UkxixjUvJjwyoB9LrN8/rs:fit/g:sm/q:40/h:300/w:300/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTUyNjI2/NS0xMTMwMzE1MjE5/LmpwZWc.jpeg">
+      <figcaption>Love Generation - Bob Sinclar (2005)</figcaption>
+    </a>
+
+    <a class="music-item" href="https://youtu.be/DsWwGUYeL4k?si=8YwWAzJTUmH_T7iE" target="_blank">
+      <img src="https://is1-ssl.mzstatic.com/image/thumb/Music122/v4/bf/ef/2a/bfef2a7e-1029-f439-ca85-46dc1e52fce7/22UMGIM63678.rgb.jpg/1200x630bf-60.jpg">
+      <figcaption>Who Needs Guitars Anyway? - Alice Deejay (2000)</figcaption>
+    </a>
+
+    <a class="music-item" href="https://youtu.be/Se237UXFKlQ?si=GHXWQ_EevfIT-7KH" target="_blank">
+      <img src="https://lastfm.freetls.fastly.net/i/u/ar0/d544156f010101837c481951a15a7067.jpg">
+      <figcaption>Around the World - A Touch of Class (2000)</figcaption>
+    </a>
+
+    <a class="music-item" href="https://youtu.be/y6120QOlsfU?si=d1g-aUka6QDRNXA5" target="_blank">
+      <img src="https://f4.bcbits.com/img/a0005988853_10.jpg">
+      <figcaption>Sandstorm - Darude (2000)</figcaption>
+    </a>
+
+    <a class="music-item" href="https://youtu.be/SkrfGsBJsME?si=UsGnY11I6STLB4lR" target="_blank">
+      <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTpP5RRChJwcOo7eEnlRvU83Z0Jyq3GN2jjkQ&s">
+      <figcaption>Heaven - DJ Sammy (2002)</figcaption>
+    </a>
+
+    <a class="music-item" href="https://youtu.be/4XIYK_JzFnQ?si=z5VXODLwQ2CLKa6U" target="_blank">
+      <img src="https://i.discogs.com/ebulsZvHiB-5XmOIZAbvQCKQFzxkh3vpN9eeQVjlSug/rs:fit/g:sm/q:90/h:600/w:598/czM6Ly9kaXNjb2dz/LWRhdGFiYXNlLWlt/YWdlcy9SLTgxMjI1/MC0xMTg5NjkzMTE5/LmpwZWc.jpeg">
+      <figcaption>Saturday Night - The Underdog Project (2006)</figcaption>
+    </a>
+
+    <a class="music-item" href="https://youtu.be/q4CR8nVy65I?si=OHIZUEti7bzJQHx9" target="_blank">
+      <img src="https://akamai.sscdn.co/uploadfile/letras/albuns/5/3/9/c/2029971700588256.jpg">
+      <figcaption>Hold You - ATB (2002)</figcaption>
+    </a>
+
+    <!-- botao de add musica -->
+    <div class="music-item" onclick="openModal()" style="display:flex; justify-content:center; align-items:center; font-weight:600;">
+      <figcaption>+ Adicionar Música</figcaption>
+    </div>
+
+  </section>
+
+</div>
+
+<!-- janela para add musicas -->
+<div class="modal-bg" id="modal-bg">
+  <div class="modal">
+    <h2>Adicione A Sua Música POP Favorita!</h2>
+
+    <input id="titulo" type="text" placeholder="Nome da Música" />
+    <input id="artista" type="text" placeholder="Artista" />
+    <input id="ano" type="number" placeholder="Ano(2000/2010)" min="2000" max="2010"/>
+    <input id="imagem" type="text" placeholder="URL da capa" />
+    <input id="link" type="text" placeholder="Link da música" />
+
+    <button onclick="addMusic()">Adicionar</button>
+    <button class="close-btn" onclick="closeModal()">Cancelar</button>
+  </div>
+</div>
+
+<script>
+function openModal() {
+  document.getElementById("modal-bg").style.display = "flex";
+}
+
+function closeModal() {
+  document.getElementById("modal-bg").style.display = "none";
+}
+
+function addMusic() {
+  const titulo = document.getElementById("titulo").value;
+  const artista = document.getElementById("artista").value;
+  const ano = document.getElementById("ano").value;
+  const imagem = document.getElementById("imagem").value;
+  const link = document.getElementById("link").value;
+
+  if (!titulo || !artista || !ano || !imagem || !link) {
+    alert("Preencha todos os campos!");
+    return;
+  }
+
+  const card = document.createElement("a");
+  card.className = "music-item";
+  card.href = link;
+  card.target = "_blank";
+
+  card.innerHTML = `
+    <img src="${imagem}">
+    <figcaption>${titulo} - ${artista} (${ano})</figcaption>
+  `;
+
+  document.getElementById("musicGrid").appendChild(card);
+
+  closeModal();
+  
+  document.getElementById("titulo").value = "";
+  document.getElementById("artista").value = "";
+  document.getElementById("ano").value = "";
+  document.getElementById("imagem").value = "";
+  document.getElementById("link").value = "";
+}
+</script>
+</body>
+</html>
