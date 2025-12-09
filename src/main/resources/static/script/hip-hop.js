@@ -1,30 +1,48 @@
 
 function openModal() {
-  document.getElementById("modal-bg").style.display = "flex";
+    document.getElementById("modal-bg").style.display = "flex";
 }
 
 function closeModal() {
-  document.getElementById("modal-bg").style.display = "none";
+    document.getElementById("modal-bg").style.display = "none";
 }
 
 function addMusic() {
-  const titulo = document.getElementById("titulo").value;
-  const artista = document.getElementById("artista").value;
-  const ano = document.getElementById("ano").value;
-  const imagem = document.getElementById("imagem").value;
-  const link = document.getElementById("link").value;
-  const popularidade = Number(document.getElementById("popularidade").value);
+    const titulo = document.getElementById("titulo").value;
+    const artista = document.getElementById("artista").value;
+    const ano = Number(document.getElementById("ano").value);
+    const popularidade = Number(document.getElementById("popularidade").value);
+    const imagem = document.getElementById("imagem").value;
+    const link = document.getElementById("link").value;
 
-  if (!titulo || !artista || !ano || !imagem || !link || !popularidade) {
-    alert("Preencha todos os campos!");
-    return;
-  }
+    if (!titulo || !artista || !ano || !imagem || !link) {
+        alert("Preencha todos os campos!");
+        return;
+    }
 
-  musicas.push({ titulo, artista, ano, imagem, link, popularidade });
+    musicas.push({
+        titulo,
+        artista,
+        ano,
+        imagem,
+        link,
+        popularidade
+    });
 
-  closeModal();
-  renderMusics();
+    closeModal();
+
+    renderMusics();
+
+    document.getElementById("titulo").value = "";
+    document.getElementById("artista").value = "";
+    document.getElementById("ano").value = "";
+    document.getElementById("popularidade").value = "";
+    document.getElementById("imagem").value = "";
+    document.getElementById("link").value = "";
 }
+
+renderMusics();
+
 
 function openModal() {
   document.getElementById("modal-bg").style.display = "flex";

@@ -11,12 +11,12 @@ function addMusic() {
   const titulo = document.getElementById("titulo").value;
   const artista = document.getElementById("artista").value;
   const ano = document.getElementById("ano").value;
+  const popularidade = Number(document.getElementById("popularidade").value);
   const imagem = document.getElementById("imagem").value;
   const link = document.getElementById("link").value;
-  const popularidade = Number(document.getElementById("popularidade").value);
 
-  if (!titulo || !artista || !ano || !imagem || !link || !popularidade) {
-    alert("Preencha todos os campos!");
+  if (!titulo || !artista || !ano || !imagem || !link || isNaN(popularidade)) {
+    alert("Preencha todos os campos corretamente!");
     return;
   }
 
@@ -25,6 +25,9 @@ function addMusic() {
   closeModal();
   renderMusics();
 }
+
+renderMusics();
+
 
 function openModal() {
   document.getElementById("modal-bg").style.display = "flex";

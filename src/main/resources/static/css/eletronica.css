@@ -3,7 +3,7 @@ body {
       background: #000;
       color: white;
       font-family: "Poppins", sans-serif;
-      background-image: url("https://i.pinimg.com/1200x/25/a5/af/25a5af09cf59ce766abc985bce232b13.jpg");
+      background-image: url("https://i.pinimg.com/736x/3a/e8/f2/3ae8f2d3eab64011eeecf50bcbb8b42e.jpg");
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -95,7 +95,7 @@ body {
   padding: 20px;
 }
 
-    .texto-sertanejo {
+    .texto-pop {
       flex: 1 1 42px;
       background: rgba(0,0,0,0.65);
       padding: 22px;
@@ -104,7 +104,7 @@ body {
       border: 1px solid rgba(255,255,255,0.15);
     }
 
-     .img-sertanejo-era img{
+     .img-pop-era img{
         width: 500px;
         height: 500px;
         border-radius: 14px;
@@ -204,7 +204,7 @@ body {
     }
 
     .close-btn {
-      background: #141214 !important;
+      background: #ff4df6 !important;
       color: white !important;
       margin-top: 5px;
     }
