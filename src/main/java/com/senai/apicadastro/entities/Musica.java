@@ -24,20 +24,20 @@ public class Musica {
     private String tituloMusica;
 
     @Min(value = 2000, message = "O ano deve ser posterior a 2000")
-    @Column(nullable = false)
-    private int ano;
+    @Column(name = "data_lancamento", nullable = false)
+    private int dataLancamento;
 
     @NotBlank(message = "O artista não deve estar vazio.")
     @Column(name = "nome_artista", nullable = false)
     private String nomeArtista;
 
-    private String cantor;
 
     @Column(name = "capa_url")
     private String capaUrl;
     
     @ManyToOne
     @JoinColumn(name = "id_genero")
+    private Genero genero;
 
     // Getters e Setters
 
@@ -58,12 +58,12 @@ public class Musica {
     }
 
 
-    public int getAno() {
-        return ano;
+    public int getDataLancamento() {
+        return dataLancamento;
     }
 
-    public void setAno(int ano) {
-        this.ano = ano;
+    public void setDataLancamento(int dataLancamento) {
+        this.dataLancamento = dataLancamento;
     }
 
     public String getNomeArtista() {
@@ -74,13 +74,6 @@ public class Musica {
         this.nomeArtista = nomeArtista;
     }
 
-    public String getCantor() {
-        return cantor;
-    }
-
-    public void setCantor(String cantor) {
-        this.cantor = cantor;
-    }
 
     public String getCapaUrl() {
         return capaUrl;
