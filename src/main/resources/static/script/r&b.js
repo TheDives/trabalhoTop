@@ -1,4 +1,3 @@
-
 function openModal() {
   document.getElementById("modal-bg").style.display = "flex";
 }
@@ -7,64 +6,42 @@ function closeModal() {
   document.getElementById("modal-bg").style.display = "none";
 }
 
-function addMusic() {
-  const titulo = document.getElementById("titulo").value;
-  const artista = document.getElementById("artista").value;
-  const ano = parseInt(document.getElementById("ano").value);
-  const popularidade = parseInt(document.getElementById("popularidade").value);
-  const imagem = document.getElementById("imagem").value;
-  const link = document.getElementById("link").value;
+function cadastrarMusica() {
+    const musica = {
+        titulo: document.getElementById("titulo").value,
+        artista: document.getElementById("artista").value,
+        ano: document.getElementById("ano").value,
+        imagem: document.getElementById("imagem").value,
+        link: document.getElementById("link").value
+    };
 
-  if (!titulo || !artista || !ano || !imagem || !link || isNaN(popularidade)) {
-    alert("Preencha todos os campos!");
-    return;
-  }
+    fetch("http://localhost:8080/api/musicas", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(musica)
+    })
+    .then(() => listarMusicas());
 
-  musicas.push({ titulo, artista, ano, imagem, link, popularidade });
-
-  closeModal();
-  renderMusics();
+    closeModal();
 }
 
-renderMusics();
+function listarMusicas() {
+    fetch("http://localhost:8080/api/musicas")
+        .then(res => res.json())
+        .then(musicas => {
+            let html = "";
 
-function openModal() {
-  document.getElementById("modal-bg").style.display = "flex";
+            musicas.forEach(m => {
+                html += `
+                    <a class="music-item" href="${m.link}" target="_blank">
+                        <img src="${m.imagem}" alt="${m.titulo}">
+                        <figcaption>${m.titulo} - ${m.artista} (${m.ano})</figcaption>
+                    </a>
+                `;
+            });
+
+            document.getElementById("musicGrid").innerHTML = html;
+        });
 }
 
-function closeModal() {
-  document.getElementById("modal-bg").style.display = "none";
-}
-
-function addMusic() {
-  const titulo = document.getElementById("titulo").value;
-  const artista = document.getElementById("artista").value;
-  const ano = document.getElementById("ano").value;
-  const imagem = document.getElementById("imagem").value;
-  const link = document.getElementById("link").value;
-
-  if (!titulo || !artista || !ano || !imagem || !link) {
-    alert("Preencha todos os campos!");
-    return;
-  }
-
-  const card = document.createElement("a");
-  card.className = "music-item";
-  card.href = link;
-  card.target = "_blank";
-
-  card.innerHTML = `
-    <img src="${imagem}">
-    <figcaption>${titulo} - ${artista} (${ano})</figcaption>
-  `;
-
-  document.getElementById("musicGrid").appendChild(card);
-
-  closeModal();
-  
-  document.getElementById("titulo").value = "";
-  document.getElementById("artista").value = "";
-  document.getElementById("ano").value = "";
-  document.getElementById("imagem").value = "";
-  document.getElementById("link").value = "";
-}
+window.onload = listarMusicas;
