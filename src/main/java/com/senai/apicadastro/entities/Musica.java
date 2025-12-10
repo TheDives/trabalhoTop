@@ -38,6 +38,7 @@ public class Musica {
     
     @ManyToOne
     @JoinColumn(name = "id_genero")
+    private Genero genero;
 
     // Getters e Setters
 
