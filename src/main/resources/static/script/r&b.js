@@ -1,3 +1,33 @@
+
+function openModal() {
+  document.getElementById("modal-bg").style.display = "flex";
+}
+
+function closeModal() {
+  document.getElementById("modal-bg").style.display = "none";
+}
+
+function addMusic() {
+  const titulo = document.getElementById("titulo").value;
+  const artista = document.getElementById("artista").value;
+  const ano = parseInt(document.getElementById("ano").value);
+  const popularidade = parseInt(document.getElementById("popularidade").value);
+  const imagem = document.getElementById("imagem").value;
+  const link = document.getElementById("link").value;
+
+  if (!titulo || !artista || !ano || !imagem || !link || isNaN(popularidade)) {
+    alert("Preencha todos os campos!");
+    return;
+  }
+
+  musicas.push({ titulo, artista, ano, imagem, link, popularidade });
+
+  closeModal();
+  renderMusics();
+}
+
+renderMusics();
+
 function openModal() {
   document.getElementById("modal-bg").style.display = "flex";
 }

@@ -2,10 +2,6 @@
 
 ## Projeto para cadastro de musicas 💿
 
-# batata
-
-# morango
-
 ## Criado o Spring 
 
 ## Teste 1 Mysql
@@ -21,3 +17,8 @@
 # Verificação  json
 
 
+
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes

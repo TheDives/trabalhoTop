@@ -13,33 +13,6 @@ function addMusic() {
   const ano = document.getElementById("ano").value;
   const imagem = document.getElementById("imagem").value;
   const link = document.getElementById("link").value;
-  const popularidade = Number(document.getElementById("popularidade").value);
-
-  if (!titulo || !artista || !ano || !imagem || !link || !popularidade) {
-    alert("Preencha todos os campos!");
-    return;
-  }
-
-  musicas.push({ titulo, artista, ano, imagem, link, popularidade });
-
-  closeModal();
-  renderMusics();
-}
-
-function openModal() {
-  document.getElementById("modal-bg").style.display = "flex";
-}
-
-function closeModal() {
-  document.getElementById("modal-bg").style.display = "none";
-}
-
-function addMusic() {
-  const titulo = document.getElementById("titulo").value;
-  const artista = document.getElementById("artista").value;
-  const ano = document.getElementById("ano").value;
-  const imagem = document.getElementById("imagem").value;
-  const link = document.getElementById("link").value;
 
   if (!titulo || !artista || !ano || !imagem || !link) {
     alert("Preencha todos os campos!");

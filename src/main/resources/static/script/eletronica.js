@@ -1,4 +1,3 @@
-
 function openModal() {
   document.getElementById("modal-bg").style.display = "flex";
 }
@@ -8,22 +7,29 @@ function closeModal() {
 }
 
 function addMusic() {
-  const titulo = document.getElementById("titulo").value;
-  const artista = document.getElementById("artista").value;
+  const titulo = document.getElementById("titulo").value.trim();
+  const artista = document.getElementById("artista").value.trim();
   const ano = document.getElementById("ano").value;
-  const imagem = document.getElementById("imagem").value;
-  const link = document.getElementById("link").value;
-  const popularidade = Number(document.getElementById("popularidade").value);
+  const popularidade = document.getElementById("popularidade").value;
+  const imagem = document.getElementById("imagem").value.trim();
+  const link = document.getElementById("link").value.trim();
 
-  if (!titulo || !artista || !ano || !imagem || !link || !popularidade) {
+  if (!titulo || !artista || !ano || !popularidade || !imagem || !link) {
     alert("Preencha todos os campos!");
     return;
   }
 
-  musicas.push({ titulo, artista, ano, imagem, link, popularidade });
+  musicas.push({
+    titulo,
+    artista,
+    ano: Number(ano),
+    popularidade: Number(popularidade),
+    imagem,
+    link
+  });
 
   closeModal();
-  renderMusics();
+  carregarMusicas();
 }
 
 function openModal() {
