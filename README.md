@@ -2,10 +2,6 @@
 
 ## Projeto para cadastro de musicas 💿
 
-# batata
-
-# morango
-
 ## Criado o Spring 
 
 ## Teste 1 Mysql
@@ -19,5 +15,6 @@
 ## Inserção do ManyToOne e OneToMany
 
 # Verificação  json
+
 
 

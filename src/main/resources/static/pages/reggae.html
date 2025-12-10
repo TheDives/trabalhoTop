@@ -5,8 +5,14 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Gênero Musical - POP</title>
   <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+
  <link rel="stylesheet" href="../css/reggae.css">
  
+
+  <link rel="stylesheet" href="../css/reggae.css">
+
+</head>
+
 <body>
 
 <div class="overlay">
@@ -17,8 +23,8 @@
       </div>
 
       <div class="menu">
-        <a href="index.html#sobre">Sobre</a>
-        <a href="index.html#generos">Gêneros</a>
+        <a href="homePage.html">Sobre</a>
+        <a href="generos.html">Gêneros</a>
 
       </div>
     </nav>
@@ -126,48 +132,6 @@
     <button class="close-btn" onclick="closeModal()">Cancelar</button>
   </div>
 </div>
-
-<script>
-function openModal() {
-  document.getElementById("modal-bg").style.display = "flex";
-}
-
-function closeModal() {
-  document.getElementById("modal-bg").style.display = "none";
-}
-
-function addMusic() {
-  const titulo = document.getElementById("titulo").value;
-  const artista = document.getElementById("artista").value;
-  const ano = document.getElementById("ano").value;
-  const imagem = document.getElementById("imagem").value;
-  const link = document.getElementById("link").value;
-
-  if (!titulo || !artista || !ano || !imagem || !link) {
-    alert("Preencha todos os campos!");
-    return;
-  }
-
-  const card = document.createElement("a");
-  card.className = "music-item";
-  card.href = link;
-  card.target = "_blank";
-
-  card.innerHTML = `
-    <img src="${imagem}">
-    <figcaption>${titulo} - ${artista} (${ano})</figcaption>
-  `;
-
-  document.getElementById("musicGrid").appendChild(card);
-
-  closeModal();
-  
-  document.getElementById("titulo").value = "";
-  document.getElementById("artista").value = "";
-  document.getElementById("ano").value = "";
-  document.getElementById("imagem").value = "";
-  document.getElementById("link").value = "";
-}
-</script>
+<script src="../script/reggae.js"></script>
 </body>
 </html>

@@ -1,3 +1,4 @@
+
 function openModal() {
   document.getElementById("modal-bg").style.display = "flex";
 }
