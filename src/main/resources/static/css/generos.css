@@ -8,7 +8,8 @@
                   #07080a;
       color:#e5e7eb;
       font-family: Georgia, 'Times New Roman', Times, serif;
-      background-image: url("https://i.pinimg.com/736x/7b/26/5f/7b265f2992b09522f2be863811babc00.jpg")
+      background-image: url("https://i.pinimg.com/736x/a2/92/77/a29277bee4a62477dffc761128d99d60.jpg");
+      background-size: cover;
     }
 
     .container{max-width:1100px; margin-inline:auto; padding:24px}
