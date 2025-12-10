@@ -99,18 +99,21 @@ body {
     font-size: 110px;
     margin: 0 0 10px;
     text-shadow: 0 0 10px rgba(255,255,255,0.3);
+     text-align: center;
 }
 
 .subtitle {
     font-size: 20px;
     opacity: 0.9;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 .description {
     background: rgba(0,0,0,0.55);
     padding: 18px 20px;
     border-radius: 14px;
+    font-size: 20px;
     border: 1px solid rgba(255,255,255,0.15);
     line-height: 1.6;
 }
@@ -127,23 +130,12 @@ body {
     line-height: 1.5; 
 }
 
-.description{
-    margin-bottom: 10px;
-    line-height: 2.0; 
-    color: #000589;
-}
-
-.live-streaming{
-    margin-bottom: 10px;
-    line-height: 2.5; 
-    color: #797979;
-}
-
 /*responsitividade*/
 
     @media (max-width: 1024px){
       h1{
         font-size: 70px;
+       
       }
 
       .intro-container{
