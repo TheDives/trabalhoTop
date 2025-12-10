@@ -3,7 +3,7 @@ body {
       background: #000;
       color: white;
       font-family: "Poppins", sans-serif;
-      background-image: url("https://i.pinimg.com/1200x/ba/f0/a3/baf0a380ad1164c78c4d969ee14676e2.jpg");
+      background-image: url("https://i.pinimg.com/1200x/f9/6b/0c/f96b0cab2ffa1e2e42d1a56a477601e2.jpg");
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -95,7 +95,7 @@ body {
   padding: 20px;
 }
 
-    .texto-rnb {
+    .texto-pop {
       flex: 1 1 42px;
       background: rgba(0,0,0,0.65);
       padding: 22px;
@@ -104,7 +104,7 @@ body {
       border: 1px solid rgba(255,255,255,0.15);
     }
 
-     .img-rnb-era img{
+     .img-pop-era img{
         width: 500px;
         height: 500px;
         border-radius: 14px;
@@ -204,8 +204,7 @@ body {
     }
 
     .close-btn {
-       background: #362b09 !important; 
-      /* sempre mudar essa cor do background de acordo com a estética do genero, ele é o botao de cancelar o add de uma musica nova no pop-up */ 
+      background: #ff4df6 !important;
       color: white !important;
       margin-top: 5px;
     }
