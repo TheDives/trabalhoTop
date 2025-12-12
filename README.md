@@ -15,10 +15,3 @@
 ## Inserção do ManyToOne e OneToMany
 
 # Verificação  json
-
-
-
-<<<<<<< Updated upstream
-=======
-
->>>>>>> Stashed changes

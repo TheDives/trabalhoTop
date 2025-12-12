@@ -6,32 +6,31 @@
   <title>Gênero Musical - Dance/Eletronica</title>
   <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/eletronica.css">
-
 </head>
+
 <body>
 
 <div class="overlay">
   <header>
     <nav class="nav">
       <div class="logo">
-        <img src="" alt="Logo Lismelt">
+        <img src="https://i.pinimg.com/736x/89/90/30/899030022bd338ea34fa606db9071345.jpg" alt="Logo Lismelt">
       </div>
 
       <div class="menu">
         <a href="homePage.html">Sobre</a>
         <a href="generos.html">Gêneros</a>
-
       </div>
     </nav>
   </header>
 
   <h1>Eletronic Dance</h1>
 
-  <!-- sobre o genero -->
+  <!-- sobre -->
   <div class="intro-container">
     <div class="texto-pop">
       <p>EDM (Electronic Dance Music) é um termo genérico que se refere a uma ampla variedade de gêneros musicais semelhantes (mas não idênticos)</p>
-      <p> A música quase sempre tem uma faixa de percussão repetitiva e normalmente inclui uma melodia tocada por um sintetizador sobreposta à bateria.</p>
+      <p>A música quase sempre tem uma faixa de percussão repetitiva e normalmente inclui uma melodia tocada por um sintetizador sobreposta à bateria.</p>
       <p>Veja abaixo as músicas do dance/eletrônica que foram ascensão na época e adicione as suas favoritas que você acha que faltam aqui.</p>
     </div>
 
@@ -103,30 +102,32 @@
       <figcaption>Hold You - ATB (2002)</figcaption>
     </a>
 
-    <!-- botao de add musica -->
-    <div class="music-item" onclick="openModal()" style="display:flex; justify-content:center; align-items:center; font-weight:600;">
-      <figcaption>+ Adicionar Música</figcaption>
+    <!-- botão idêntico às caixas -->
+    <div class="music-item add-button" onclick="openModal()">
+      <img src="https://cdn-icons-png.flaticon.com/512/32/32339.png" style="width:60%; opacity:0.7;">
+      <figcaption>Adicionar Música</figcaption>
     </div>
 
   </section>
-
 </div>
 
-<!-- janela para add musicas -->
-<div class="modal-bg" id="modal-bg">
+<!-- modal -->
+<div id="modal-bg" class="modal-bg">
   <div class="modal">
-    <h2>Adicione A Sua Música POP Favorita!</h2>
+    <h2>Adicionar Música</h2>
 
-    <input id="titulo" type="text" placeholder="Nome da Música" />
-    <input id="artista" type="text" placeholder="Artista" />
-    <input id="ano" type="number" placeholder="Ano(2000/2010)" min="2000" max="2010"/>
-    <input id="imagem" type="text" placeholder="URL da capa" />
-    <input id="link" type="text" placeholder="Link da música" />
+    <input id="titulo" placeholder="Título">
+    <input id="artista" placeholder="Artista">
+    <input id="ano" placeholder="Ano (2000-2010)" min="2000" max="2010"/>
+    <input id="imagem" placeholder="URL da Imagem">
+    <input id="link" placeholder="Link da Música">
 
-    <button onclick="addMusic()">Adicionar</button>
-    <button class="close-btn" onclick="closeModal()">Cancelar</button>
+    <button onclick="cadastrarMusica()">Salvar</button>
+    <button class="close-btn" onclick="closeModal()">Fechar</button>
   </div>
 </div>
-  <script src="../script/eletronica.js"></script>
+
+<script src="../script/eletronica.js"></script>
+
 </body>
 </html>
