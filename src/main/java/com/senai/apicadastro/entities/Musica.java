@@ -12,11 +12,12 @@ import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotBlank;
 
 @Entity
-@Table(name = "tb_musicas")
+@Table(name = "tb_musica")
 public class Musica {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_musica")
     private Long id;
 
     @NotBlank(message = "O título é obrigatório.")
@@ -28,8 +29,8 @@ public class Musica {
     private int dataLancamento;
 
     @NotBlank(message = "O artista não deve estar vazio.")
-    @Column(name = "nome_artista", nullable = false)
-    private String nomeArtista;
+    @Column(name = "nome_cantor", nullable = false)
+    private String nomeCantor;
 
 
     @Column(name = "capa_url")
@@ -39,7 +40,7 @@ public class Musica {
     private String linkYoutube;
     
     @ManyToOne
-    @JoinColumn(name = "id_genero")
+    @JoinColumn(name = "fk_genero")
     private Genero genero;
 
     // Getters e Setters
@@ -47,10 +48,10 @@ public class Musica {
     	
     }
 
-    public Musica (String tituloMusica, int dataLancamento, String nomeArtista, String capaUrl, String linkYoutube) {
+    public Musica (String tituloMusica, int dataLancamento, String nomeCantor, String capaUrl, String linkYoutube) {
     	this.tituloMusica = tituloMusica;
     	this.dataLancamento = dataLancamento;
-    	this.nomeArtista = nomeArtista;
+    	this.nomeCantor = nomeCantor;
     	this.capaUrl = capaUrl;
     	this.linkYoutube = linkYoutube;
     }
@@ -79,12 +80,12 @@ public class Musica {
 		this.dataLancamento = dataLancamento;
 	}
 
-	public String getNomeArtista() {
-		return nomeArtista;
+	public String getNomeCantor() {
+		return nomeCantor;
 	}
 
-	public void setNomeArtista(String nomeArtista) {
-		this.nomeArtista = nomeArtista;
+	public void setNomeCantor(String nomeCantor) {
+		this.nomeCantor = nomeCantor;
 	}
 
 	public String getCapaUrl() {

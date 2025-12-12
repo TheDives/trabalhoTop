@@ -19,15 +19,13 @@ public class Genero {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id_genero")
     private Long id;
 
     @NotBlank(message = "O gênero da musica é obrigatório.")
-    @Column(name = "genero_musica", nullable = false)
+    @Column(name = "titulo_genero", nullable = false)
     private String generoMusica;
 
-    @NotBlank(message = "A história do gênero não deve estar vazia.")
-    @Column(name = "historia_genero", nullable = false)
-    private String historiaGenero;
 
     @JsonIgnore
     @OneToMany(mappedBy = "genero")
@@ -51,11 +49,4 @@ public class Genero {
         this.generoMusica = generoMusica;
     }
 
-    public String getHistoriaGenero() {
-        return historiaGenero;
-    }
-
-    public void setHistoriaGenero(String historiaGenero) {
-        this.historiaGenero = historiaGenero;
-    }
 }
