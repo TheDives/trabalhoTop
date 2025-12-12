@@ -223,129 +223,11 @@ body {
       color: white !important;
       margin-top: 5px;
     }
+    
 
     @keyframes fadeIn {
       from { opacity: 0; transform: scale(.8); }
       to { opacity: 1; transform: scale(1); }
-    }
-
-
-    /*responsitividade*/
-
-    @media (max-width: 1024px){
-      h1{
-        font-size: 70px;
-      }
-
-      .intro-container{
-        flex-wrap: wrap;
-        text-align: center;
-      }
-
-      .img-rnb-era img{
-        width: 420px;
-        height: 420px;
-      }
-
-      .texto-rnb{
-        font-size: 16px;
-      }
-
-      .menu a{
-        padding: 6px 10px;
-        font-size: 14px;
-      }
-
-      .logo img{
-        width: 80px;
-        height: 80px;
-      }
-    }
-
-
-    @media(max-width: 600px){
-      body{
-        background-attachment: scroll;
-      }
-
-      .nav{
-        padding: 10px 16px;
-      }
-
-      .logo img{
-        width: 65px;
-        height: 65px;
-      }
-
-      .menu{
-        gap: 10px;
-      }
-
-      .menu a{
-        padding: 6px 8px;
-        font-size: 12px;
-      }
-
-      h1{
-        font-size: 55px;
-        margin-top: 25px;
-      }
-      .intro-container{
-        flex-direction: column;
-        text-align: center;
-        gap: 20px;
-      }
-
-      .texto-rnb{
-        font-size: 15px;
-        padding: 18px;
-      }
-     
-      .img-rnb-era img{
-        width: 300px;
-        height:  300px;
-      }
-
-      .music-grid{
-        grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-        gap: 14px;
-      }
-
-      .music-item figcaption{
-        font-size: 13px;
-        padding: 6px;
-      }
-
-      .modal{
-        width: 90%;
-        padding: 18px;
-      }
-
-      .modal input{
-        padding: 8px;
-        font-size: 14px;
-      }
-    }
-
-    @media(max-width: 380px){
-      h1{
-        font-size: 45px;
-      }
-
-      .img-rnb-era img{
-        width: 250px;
-        height: 250px;
-      }
-
-      .music-grid{
-        grid-template-columns: repeat(auto-fit, minmax(130px,1fr));
-      }
-
-      .menu a{
-       font-size: 11px;
-       padding: 4px 6px;
-      }
-
     }
 
     .actions {
@@ -403,4 +285,3 @@ body {
 .delete-btn:hover {
   background: #d63232;
 }
-
