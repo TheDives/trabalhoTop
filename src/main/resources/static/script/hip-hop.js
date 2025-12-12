@@ -97,45 +97,47 @@ async function carregarMusicas() {
 
 // Salva ou edita uma música (POST ou PUT).
 
-async function salvarMusica() {
-    const id = document.getElementById("musicaId").value;
-    const titulo = document.getElementById("titulo").value.trim();
-    const artista = document.getElementById("artista").value.trim();
-    const ano = document.getElementById("ano").value.trim();
-    const imagem = document.getElementById("imagem").value.trim();
-    const link = document.getElementById("link").value.trim();
+function listar() {
+    fetch("http://localhost:8080/musicas") // busca as musicas
+        .then(res => res.json()) // converte JSON
+        .then(musicas => {
+            let html = ""; // html da listagem
 
-    if (!titulo || !artista || !ano || !imagem || !link) {
-        alert("Preencha todos os campos obrigatórios!");
-        return;
-    }
+            musicas.forEach(m => { // percorre cada musica
+                html += `
+                  <div class="music-item">
+                    <img src="${m.imagem}" alt="${m.imagem}"> <!-- capa -->
+                    <link src= "${m.link}" alt="${m.link}"> <!-- link -->
+                    <strong>${m.artista}</strong> <br> <!-- artista -->
+                    <strong>${m.titulo}</strong> <br> <!-- titulo -->
+                    (${m.ano || ""}) <!-- ano -->
+                  </div>
+                `;
+            });
 
-    const musica = { titulo, artista, ano, imagem, link };
-    
-    // Define a requisição: POST (novo) ou PUT (edição)
-    const method = id ? 'PUT' : 'POST';
-    const url = id ? `${API_URL}/${id}` : API_URL;
-
-    try {
-        const response = await fetch(url, {
-            method: method,
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(musica)
+            document.getElementById("musicGrid").innerHTML = html; // renderiza
         });
+}
 
-        if (!response.ok) {
-            alert(`Erro ${method === 'POST' ? 'ao cadastrar' : 'na edição'}: ${response.statusText}. Verifique o console do Spring Boot.`);
-            return;
-        }
+function listar() {
+    fetch("http://localhost:8080/api/filmes") // busca filmes
+        .then(res => res.json()) // converte JSON
+        .then(filmes => {
+            let html = ""; // html da listagem
 
-        closeModal();
-        carregarMusicas(); // Atualiza a lista
-        alert(`Música ${method === 'POST' ? 'cadastrada' : 'editada'} com sucesso!`);
+            filmes.forEach(f => { // percorre cada filme
+                html += `
+                  <div class="movie">
+                    <img src="${f.coverUrl}" alt="${f.title}"> <!-- capa -->
+                    <strong>${f.title}</strong> <br> <!-- título -->
+                    <em>${f.genre ? f.genre.name : ""}</em><br> <!-- gênero -->
+                    (${f.year || ""}) - ${f.director || ""} <!-- ano e diretor -->
+                  </div>
+                `;
+            });
 
-    } catch (error) {
-        console.error("Erro na operação de salvar/editar:", error);
-        alert("Erro de conexão com o servidor. Verifique o console.");
-    }
+            document.getElementById("moviesList").innerHTML = html; // renderiza
+        });
 }
 
 //Remove uma música (DELETE).
