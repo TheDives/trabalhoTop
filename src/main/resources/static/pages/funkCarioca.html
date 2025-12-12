@@ -111,10 +111,11 @@ Nomes como Bonde do Tigrão, MC Marcinho, Tati Quebra Barraco, Lacraia e MC Serg
 
 </div>
 
-<!-- modal -->
 <div id="modal-bg" class="modal-bg">
   <div class="modal">
-    <h2>Adicionar Música</h2>
+    <input type="hidden" id="musicaId">
+    
+    <h2 id="modal-title"> + Adicionar Música</h2>
 
     <input id="titulo" placeholder="Título">
     <input id="artista" placeholder="Artista">
@@ -122,7 +123,7 @@ Nomes como Bonde do Tigrão, MC Marcinho, Tati Quebra Barraco, Lacraia e MC Serg
     <input id="imagem" placeholder="URL da Imagem">
     <input id="link" placeholder="Link da Música">
 
-    <button onclick="cadastrarMusica()">Salvar</button>
+    <button id="save-button" onclick="salvarMusica()">Salvar</button>
     <button class="close-btn" onclick="closeModal()">Fechar</button>
   </div>
 </div>
