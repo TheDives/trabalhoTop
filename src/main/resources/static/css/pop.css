@@ -61,21 +61,6 @@ body {
       border-color: rgba(255,255,255,0.6);
     }
 
-    .add-btn {
-      background: #1a121215;
-      border: 1px solid white;
-      color: white;
-      padding: 8px 14px;
-      border-radius: 50px;
-      cursor: pointer;
-      font-size: 14px;
-      transition: .3s;
-    }
-
-    .add-btn:hover {
-      background: white;
-      color: #0b0f18;
-    }
 
     h1 {
       text-align: center;

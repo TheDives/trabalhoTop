@@ -1,8 +1,10 @@
 const API_URL = "http://localhost:8080/musicas";
 const modal = document.getElementById("modal-bg");
 
+
+ // Abre o modal e preenche os campos se um ID for fornecido (modo Edição).
 function openModal(id = null, titulo = '', artista = '', ano = '', imagem = '', link = '') {
-    // Se id é null, estamos cadastrando. Se id existe, estamos editando.
+    // Preenche campos do modal
     document.getElementById("musicaId").value = id || '';
     document.getElementById("titulo").value = titulo;
     document.getElementById("artista").value = artista;
@@ -10,6 +12,7 @@ function openModal(id = null, titulo = '', artista = '', ano = '', imagem = '', 
     document.getElementById("imagem").value = imagem;
     document.getElementById("link").value = link;
 
+    // Atualiza o título e o botão de salvar
     document.getElementById("modal-title").innerText = id ? "Editar Música" : "Adicionar Música";
     document.getElementById("save-button").innerText = id ? "Salvar Alterações" : "Salvar";
 
@@ -19,36 +22,42 @@ function openModal(id = null, titulo = '', artista = '', ano = '', imagem = '', 
 function closeModal() {
     modal.style.display = "none";
 }
+//Cria o elemento HTML completo para uma única música, incluindo os botões de ação.
 
 function criarItemMusica(m) {
+    // O item principal é um link (anchor)
     const item = document.createElement("a");
     item.classList.add("music-item");
     item.href = m.link;
-    item.target = "_blank";
+    item.target = "_blank"; // Abre o link em nova aba
 
+    // Conteúdo da figura
     const figureContent = `
         <img src="${m.imagem}">
         <figcaption>${m.titulo} - ${m.artista} (${m.ano})</figcaption>
     `;
     item.innerHTML = figureContent;
     
-    // Adicionar botões de Excluir e Editar
+    // Contêiner para os botões de ação
     const actionButtons = document.createElement("div");
     actionButtons.classList.add("music-actions");
     
     // Botão de Excluir
     const deleteBtn = document.createElement("button");
     deleteBtn.innerHTML = "🗑️";
+    deleteBtn.title = "Excluir Música";
     deleteBtn.onclick = (e) => {
-        e.preventDefault(); // Impede que o clique abra o link
+        e.preventDefault(); // Impede o clique de abrir o link (<a>)
         removerMusica(m.id, m.titulo);
     };
 
     // Botão de Editar
     const editBtn = document.createElement("button");
     editBtn.innerHTML = "✏️";
+    editBtn.title = "Editar Música";
     editBtn.onclick = (e) => {
-        e.preventDefault(); // Impede que o clique abra o link
+        e.preventDefault(); // Impede o clique de abrir o link (<a>)
+        // Chama openModal com todos os dados preenchidos para edição
         openModal(m.id, m.titulo, m.artista, m.ano, m.imagem, m.link);
     };
 
@@ -60,16 +69,19 @@ function criarItemMusica(m) {
     return item;
 }
 
+
+ //Busca todas as músicas na API e as renderiza no grid dinâmico.
+
 async function carregarMusicas() {
     try {
         const response = await fetch(API_URL);
         if (!response.ok) {
-            throw new Error(`Erro de rede: ${response.status}`);
+            throw new Error(`Erro de rede ao listar músicas: ${response.status}`);
         }
         const musicas = await response.json();
         const apiMusicGrid = document.getElementById("api-music-grid");
 
-        // 1. Limpa APENAS a grade DINÂMICA (API)
+        // 1. Limpa APENAS a grade DINÂMICA (Músicas da API)
         apiMusicGrid.innerHTML = ""; 
 
         // 2. Insere as músicas da API na grade dinâmica
@@ -80,49 +92,55 @@ async function carregarMusicas() {
 
     } catch (error) {
         console.error("Erro ao carregar músicas da API:", error);
-        // Opcional: Mostrar uma mensagem de erro na tela
     }
 }
 
-async function salvarMusica() {
-    const id = document.getElementById("musicaId").value;
-    const titulo = document.getElementById("titulo").value.trim();
-    const artista = document.getElementById("artista").value.trim();
-    const ano = document.getElementById("ano").value.trim();
-    const imagem = document.getElementById("imagem").value.trim();
-    const link = document.getElementById("link").value.trim();
+// Salva ou edita uma música (POST ou PUT).
 
-    if (!titulo || !artista || !ano || !imagem || !link) {
-        alert("Preencha todos os campos!");
-        return;
-    }
+function listar() {
+    fetch("http://localhost:8080/musicas") // busca as musicas
+        .then(res => res.json()) // converte JSON
+        .then(musicas => {
+            let html = ""; // html da listagem
 
-    const musica = { titulo, artista, ano, imagem, link };
-    
-    // Define o método: POST para novo, PUT para edição
-    const method = id ? 'PUT' : 'POST';
-    const url = id ? `${API_URL}/${id}` : API_URL;
+            musicas.forEach(m => { // percorre cada musica
+                html += `
+                  <div class="music-item">
+                    <img src="${m.imagem}" alt="${m.imagem}"> <!-- capa -->
+                    <link src= "${m.link}" alt="${m.link}"> <!-- link -->
+                    <strong>${m.artista}</strong> <br> <!-- artista -->
+                    <strong>${m.titulo}</strong> <br> <!-- titulo -->
+                    (${m.ano || ""}) <!-- ano -->
+                  </div>
+                `;
+            });
 
-    try {
-        const response = await fetch(url, {
-            method: method,
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(musica)
+            document.getElementById("musicGrid").innerHTML = html; // renderiza
         });
-
-        if (!response.ok) {
-            alert(`Erro ao salvar: ${response.statusText}. Verifique o console do Spring Boot.`);
-            return;
-        }
-
-        closeModal();
-        carregarMusicas(); // atualiza automaticamente
-
-    } catch (error) {
-        console.error("Erro na operação de salvar/editar:", error);
-    }
 }
 
+function listar() {
+    fetch("http://localhost:8080/api/filmes") // busca filmes
+        .then(res => res.json()) // converte JSON
+        .then(filmes => {
+            let html = ""; // html da listagem
+
+            filmes.forEach(f => { // percorre cada filme
+                html += `
+                  <div class="movie">
+                    <img src="${f.coverUrl}" alt="${f.title}"> <!-- capa -->
+                    <strong>${f.title}</strong> <br> <!-- título -->
+                    <em>${f.genre ? f.genre.name : ""}</em><br> <!-- gênero -->
+                    (${f.year || ""}) - ${f.director || ""} <!-- ano e diretor -->
+                  </div>
+                `;
+            });
+
+            document.getElementById("moviesList").innerHTML = html; // renderiza
+        });
+}
+
+//Remove uma música (DELETE).
 async function removerMusica(id, titulo) {
     if (!confirm(`Tem certeza que deseja remover a música "${titulo}"?`)) {
         return;
@@ -138,12 +156,13 @@ async function removerMusica(id, titulo) {
             return;
         }
 
-        carregarMusicas(); // atualiza automaticamente
+        carregarMusicas(); // Atualiza a lista
+        alert(`Música "${titulo}" removida com sucesso!`);
         
     } catch (error) {
         console.error("Erro na operação de remover:", error);
+        alert("Erro de conexão com o servidor. Verifique o console.");
     }
 }
-
-// Inicia o carregamento ao abrir a página
+// Inicia o carregamento das músicas da API ao abrir a página
 window.onload = carregarMusicas;

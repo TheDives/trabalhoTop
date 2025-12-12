@@ -1,40 +1,104 @@
 const API_URL = "http://localhost:8080/musicas";
+const modal = document.getElementById("modal-bg");
 
-function openModal() {
-    document.getElementById("modal-bg").style.display = "flex";
+
+ // Abre o modal e preenche os campos se um ID for fornecido (modo Edição).
+function openModal(id = null, titulo = '', artista = '', ano = '', imagem = '', link = '') {
+    // Preenche campos do modal
+    document.getElementById("musicaId").value = id || '';
+    document.getElementById("titulo").value = titulo;
+    document.getElementById("artista").value = artista;
+    document.getElementById("ano").value = ano;
+    document.getElementById("imagem").value = imagem;
+    document.getElementById("link").value = link;
+
+    // Atualiza o título e o botão de salvar
+    document.getElementById("modal-title").innerText = id ? "Editar Música" : "Adicionar Música";
+    document.getElementById("save-button").innerText = id ? "Salvar Alterações" : "Salvar";
+
+    modal.style.display = "flex";
 }
 
 function closeModal() {
-    document.getElementById("modal-bg").style.display = "none";
+    modal.style.display = "none";
 }
+//Cria o elemento HTML completo para uma única música, incluindo os botões de ação.
+
+function criarItemMusica(m) {
+    // O item principal é um link (anchor)
+    const item = document.createElement("a");
+    item.classList.add("music-item");
+    item.href = m.link;
+    item.target = "_blank"; // Abre o link em nova aba
+
+    // Conteúdo da figura
+    const figureContent = `
+        <img src="${m.imagem}">
+        <figcaption>${m.titulo} - ${m.artista} (${m.ano})</figcaption>
+    `;
+    item.innerHTML = figureContent;
+    
+    // Contêiner para os botões de ação
+    const actionButtons = document.createElement("div");
+    actionButtons.classList.add("music-actions");
+    
+    // Botão de Excluir
+    const deleteBtn = document.createElement("button");
+    deleteBtn.innerHTML = "🗑️";
+    deleteBtn.title = "Excluir Música";
+    deleteBtn.onclick = (e) => {
+        e.preventDefault(); // Impede o clique de abrir o link (<a>)
+        removerMusica(m.id, m.titulo);
+    };
+
+    // Botão de Editar
+    const editBtn = document.createElement("button");
+    editBtn.innerHTML = "✏️";
+    editBtn.title = "Editar Música";
+    editBtn.onclick = (e) => {
+        e.preventDefault(); // Impede o clique de abrir o link (<a>)
+        // Chama openModal com todos os dados preenchidos para edição
+        openModal(m.id, m.titulo, m.artista, m.ano, m.imagem, m.link);
+    };
+
+    actionButtons.appendChild(editBtn);
+    actionButtons.appendChild(deleteBtn);
+
+    item.appendChild(actionButtons);
+
+    return item;
+}
+
+
+ //Busca todas as músicas na API e as renderiza no grid dinâmico.
 
 async function carregarMusicas() {
-    const response = await fetch(API_URL);
-    const musicas = await response.json();
+    try {
+        const response = await fetch(API_URL);
+        if (!response.ok) {
+            throw new Error(`Erro de rede ao listar músicas: ${response.status}`);
+        }
+        const musicas = await response.json();
+        const apiMusicGrid = document.getElementById("api-music-grid");
 
-    const musicGrid = document.getElementById("musicGrid");
+        // 1. Limpa APENAS a grade DINÂMICA (Músicas da API)
+        apiMusicGrid.innerHTML = ""; 
 
-    // remove músicas antigas, exceto o botão
-    const botoes = document.querySelector(".add-button");
-    musicGrid.innerHTML = "";
-    musicGrid.appendChild(botoes);
+        // 2. Insere as músicas da API na grade dinâmica
+        musicas.forEach(m => {
+            const item = criarItemMusica(m);
+            apiMusicGrid.appendChild(item);
+        });
 
-    musicas.forEach(m => {
-        const item = document.createElement("a");
-        item.classList.add("music-item");
-        item.href = m.link;
-        item.target = "_blank";
-
-        item.innerHTML = `
-            <img src="${m.imagem}">
-            <figcaption>${m.titulo} - ${m.artista} (${m.ano})</figcaption>
-        `;
-
-        musicGrid.insertBefore(item, botoes);
-    });
+    } catch (error) {
+        console.error("Erro ao carregar músicas da API:", error);
+    }
 }
 
-async function cadastrarMusica() {
+// Salva ou edita uma música (POST ou PUT).
+
+async function salvarMusica() {
+    const id = document.getElementById("musicaId").value;
     const titulo = document.getElementById("titulo").value.trim();
     const artista = document.getElementById("artista").value.trim();
     const ano = document.getElementById("ano").value.trim();
@@ -42,28 +106,61 @@ async function cadastrarMusica() {
     const link = document.getElementById("link").value.trim();
 
     if (!titulo || !artista || !ano || !imagem || !link) {
-        alert("Preencha todos os campos!");
+        alert("Preencha todos os campos obrigatórios!");
         return;
     }
 
     const musica = { titulo, artista, ano, imagem, link };
+    
+    // Define a requisição: POST (novo) ou PUT (edição)
+    const method = id ? 'PUT' : 'POST';
+    const url = id ? `${API_URL}/${id}` : API_URL;
 
-    await fetch(API_URL, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(musica)
-    });
+    try {
+        const response = await fetch(url, {
+            method: method,
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(musica)
+        });
 
-    closeModal();
-    carregarMusicas(); // atualiza automaticamente
+        if (!response.ok) {
+            alert(`Erro ${method === 'POST' ? 'ao cadastrar' : 'na edição'}: ${response.statusText}. Verifique o console do Spring Boot.`);
+            return;
+        }
 
-    // limpa campos
-    document.getElementById("titulo").value = "";
-    document.getElementById("artista").value = "";
-    document.getElementById("ano").value = "";
-    document.getElementById("imagem").value = "";
-    document.getElementById("link").value = "";
+        closeModal();
+        carregarMusicas(); // Atualiza a lista
+        alert(`Música ${method === 'POST' ? 'cadastrada' : 'editada'} com sucesso!`);
+
+    } catch (error) {
+        console.error("Erro na operação de salvar/editar:", error);
+        alert("Erro de conexão com o servidor. Verifique o console.");
+    }
 }
 
-// carregar músicas ao abrir a página
+//Remove uma música (DELETE).
+async function removerMusica(id, titulo) {
+    if (!confirm(`Tem certeza que deseja remover a música "${titulo}"?`)) {
+        return;
+    }
+    
+    try {
+        const response = await fetch(`${API_URL}/${id}`, {
+            method: "DELETE"
+        });
+
+        if (!response.ok) {
+            alert(`Erro ao remover: ${response.statusText}. Verifique o console do Spring Boot.`);
+            return;
+        }
+
+        carregarMusicas(); // Atualiza a lista
+        alert(`Música "${titulo}" removida com sucesso!`);
+        
+    } catch (error) {
+        console.error("Erro na operação de remover:", error);
+        alert("Erro de conexão com o servidor. Verifique o console.");
+    }
+}
+// Inicia o carregamento das músicas da API ao abrir a página
 window.onload = carregarMusicas;
