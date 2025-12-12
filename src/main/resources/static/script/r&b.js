@@ -24,7 +24,7 @@ function closeModal() {
 }
 //Cria o elemento HTML completo para uma única música, incluindo os botões de ação.
 
-function cadastrarMusica(m) {
+function salvarMusica(m) {
     // O item principal é um link (anchor)
     const item = document.createElement("a");
     item.classList.add("music-item");
