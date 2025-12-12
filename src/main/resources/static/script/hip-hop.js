@@ -24,7 +24,7 @@ function closeModal() {
 }
 //Cria o elemento HTML completo para uma única música, incluindo os botões de ação.
 
-function criarItemMusica(m) {
+function cadastrarMusica(m) {
     // O item principal é um link (anchor)
     const item = document.createElement("a");
     item.classList.add("music-item");
@@ -116,27 +116,6 @@ function listar() {
             });
 
             document.getElementById("musicGrid").innerHTML = html; // renderiza
-        });
-}
-
-function listar() {
-    fetch("http://localhost:8080/api/filmes") // busca filmes
-        .then(res => res.json()) // converte JSON
-        .then(filmes => {
-            let html = ""; // html da listagem
-
-            filmes.forEach(f => { // percorre cada filme
-                html += `
-                  <div class="movie">
-                    <img src="${f.coverUrl}" alt="${f.title}"> <!-- capa -->
-                    <strong>${f.title}</strong> <br> <!-- título -->
-                    <em>${f.genre ? f.genre.name : ""}</em><br> <!-- gênero -->
-                    (${f.year || ""}) - ${f.director || ""} <!-- ano e diretor -->
-                  </div>
-                `;
-            });
-
-            document.getElementById("moviesList").innerHTML = html; // renderiza
         });
 }
 
