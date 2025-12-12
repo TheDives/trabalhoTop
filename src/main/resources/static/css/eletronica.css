@@ -15,6 +15,20 @@ body {
       padding-bottom: 80px;
     }
 
+    .edit-btn {
+  margin-top: 6px;
+  padding: 6px 12px;
+  background: #4da6ff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.edit-btn:hover {
+  background: #1f7adb;
+}
+
     header {
       position: sticky;
       top: 0;

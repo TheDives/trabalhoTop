@@ -6,8 +6,8 @@
   <title>Gênero Musical - Dance/Eletronica</title>
   <link href="https://fonts.googleapis.com/css2?family=Pinyon+Script&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="../css/eletronica.css">
-
 </head>
+
 <body>
 
 <div class="overlay">
@@ -20,18 +20,17 @@
       <div class="menu">
         <a href="homePage.html">Sobre</a>
         <a href="generos.html">Gêneros</a>
-
       </div>
     </nav>
   </header>
 
   <h1>Eletronic Dance</h1>
 
-  <!-- sobre o genero -->
+  <!-- sobre -->
   <div class="intro-container">
     <div class="texto-pop">
       <p>EDM (Electronic Dance Music) é um termo genérico que se refere a uma ampla variedade de gêneros musicais semelhantes (mas não idênticos)</p>
-      <p> A música quase sempre tem uma faixa de percussão repetitiva e normalmente inclui uma melodia tocada por um sintetizador sobreposta à bateria.</p>
+      <p>A música quase sempre tem uma faixa de percussão repetitiva e normalmente inclui uma melodia tocada por um sintetizador sobreposta à bateria.</p>
       <p>Veja abaixo as músicas do dance/eletrônica que foram ascensão na época e adicione as suas favoritas que você acha que faltam aqui.</p>
     </div>
 
@@ -103,23 +102,23 @@
       <figcaption>Hold You - ATB (2002)</figcaption>
     </a>
 
-    <!-- botao de add musica -->
-    <div class="music-item" onclick="openModal()" style="display:flex; justify-content:center; align-items:center; font-weight:600;">
-      <figcaption>+ Adicionar Música</figcaption>
+    <!-- botão idêntico às caixas -->
+    <div class="music-item add-button" onclick="openModal()">
+      <img src="https://cdn-icons-png.flaticon.com/512/32/32339.png" style="width:60%; opacity:0.7;">
+      <figcaption>Adicionar Música</figcaption>
     </div>
 
   </section>
-
 </div>
 
-<!-- janela para add musicas -->
+<!-- modal -->
 <div id="modal-bg" class="modal-bg">
   <div class="modal">
     <h2>Adicionar Música</h2>
 
     <input id="titulo" placeholder="Título">
     <input id="artista" placeholder="Artista">
-    <input id="ano" placeholder="Ano(2000/2010)" min="2000" max="2010"/>
+    <input id="ano" placeholder="Ano (2000-2010)" min="2000" max="2010"/>
     <input id="imagem" placeholder="URL da Imagem">
     <input id="link" placeholder="Link da Música">
 
@@ -128,8 +127,7 @@
   </div>
 </div>
 
-<button class="add-btn" onclick="openModal()">Adicionar Música</button>
+<script src="../script/eletronica.js"></script>
 
-  <script src="../script/eletronica.js"></script>
 </body>
 </html>
