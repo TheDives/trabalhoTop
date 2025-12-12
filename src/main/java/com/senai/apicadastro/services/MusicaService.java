@@ -33,7 +33,7 @@ public class MusicaService {
 			antigaMusica.setTituloMusica(novaMusica.getTituloMusica());
 			antigaMusica.setDataLancamento(novaMusica.getDataLancamento());
 			antigaMusica.setCapaUrl(novaMusica.getCapaUrl());
-			antigaMusica.setNomeArtista(novaMusica.getNomeArtista());
+			antigaMusica.setNomeCantor(novaMusica.getNomeCantor());
 			
 			return repository.save(antigaMusica);
 			
