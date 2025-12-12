@@ -1,69 +1,100 @@
-const API_URL = "http://localhost:8080/musicas";
+let editandoId = null;
 
-function openModal() {
+// Abre modal
+function openModal(musica = null) {
     document.getElementById("modal-bg").style.display = "flex";
+
+    if (musica) {
+        editandoId = musica.id;
+        document.getElementById("titulo").value = musica.titulo;
+        document.getElementById("artista").value = musica.artista;
+        document.getElementById("ano").value = musica.ano;
+        document.getElementById("imagem").value = musica.imagem;
+        document.getElementById("link").value = musica.link;
+    } else {
+        editandoId = null;
+        document.getElementById("titulo").value = "";
+        document.getElementById("artista").value = "";
+        document.getElementById("ano").value = "";
+        document.getElementById("imagem").value = "";
+        document.getElementById("link").value = "";
+    }
 }
 
+// Fecha modal
 function closeModal() {
     document.getElementById("modal-bg").style.display = "none";
 }
 
-async function carregarMusicas() {
-    const response = await fetch(API_URL);
-    const musicas = await response.json();
+// Salvar (criar ou editar)
+function salvarMusica() {
+    const musica = {
+        titulo: document.getElementById("titulo").value,
+        artista: document.getElementById("artista").value,
+        ano: document.getElementById("ano").value,
+        imagem: document.getElementById("imagem").value,
+        link: document.getElementById("link").value
+    };
 
-    const musicGrid = document.getElementById("musicGrid");
+    let url = "http://localhost:8080/api/musicas";
+    let metodo = "POST";
 
-    // remove músicas antigas, exceto o botão
-    const botoes = document.querySelector(".add-button");
-    musicGrid.innerHTML = "";
-    musicGrid.appendChild(botoes);
-
-    musicas.forEach(m => {
-        const item = document.createElement("a");
-        item.classList.add("music-item");
-        item.href = m.link;
-        item.target = "_blank";
-
-        item.innerHTML = `
-            <img src="${m.imagem}">
-            <figcaption>${m.titulo} - ${m.artista} (${m.ano})</figcaption>
-        `;
-
-        musicGrid.insertBefore(item, botoes);
-    });
-}
-
-async function cadastrarMusica() {
-    const titulo = document.getElementById("titulo").value.trim();
-    const artista = document.getElementById("artista").value.trim();
-    const ano = document.getElementById("ano").value.trim();
-    const imagem = document.getElementById("imagem").value.trim();
-    const link = document.getElementById("link").value.trim();
-
-    if (!titulo || !artista || !ano || !imagem || !link) {
-        alert("Preencha todos os campos!");
-        return;
+    if (editandoId) {
+        url = `http://localhost:8080/api/musicas/${editandoId}`;
+        metodo = "PUT";
     }
 
-    const musica = { titulo, artista, ano, imagem, link };
-
-    await fetch(API_URL, {
-        method: "POST",
+    fetch(url, {
+        method: metodo,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(musica)
+    })
+    .then(() => {
+        listarMusicas();
+        closeModal();
     });
-
-    closeModal();
-    carregarMusicas(); // atualiza automaticamente
-
-    // limpa campos
-    document.getElementById("titulo").value = "";
-    document.getElementById("artista").value = "";
-    document.getElementById("ano").value = "";
-    document.getElementById("imagem").value = "";
-    document.getElementById("link").value = "";
 }
 
-// carregar músicas ao abrir a página
-window.onload = carregarMusicas;
+// LISTAR (sem apagar as músicas originais)
+function listarMusicas() {
+    fetch("http://localhost:8080/api/musicas")
+        .then(res => res.json())
+        .then(musicas => {
+
+            // mantém o conteúdo original
+            const grid = document.getElementById("musicGrid");
+
+            // remove apenas os itens criados pelo backend
+            document.querySelectorAll(".music-item.backend").forEach(e => e.remove());
+
+            // adiciona músicas vindas do backend
+            musicas.forEach(m => {
+                const div = document.createElement("div");
+                div.classList.add("music-item", "backend");
+
+                div.innerHTML = `
+                    <a href="${m.link}" target="_blank">
+                        <img src="${m.imagem}">
+                        <figcaption>${m.titulo} - ${m.artista} (${m.ano})</figcaption>
+                    </a>
+
+                    <button class="edit-btn" onclick='openModal(${JSON.stringify(m)})'>Editar</button>
+                    <button class="btn-delete" onclick="deletarMusica(${m.id})">Excluir</button>
+                `;
+
+                // insere ANTES do botão + adicionar música
+                grid.insertBefore(div, document.getElementById("addMusicCard"));
+            });
+        });
+}
+
+// DELETAR
+function deletarMusica(id) {
+    fetch(`http://localhost:8080/api/musicas/${id}`, {
+        method: "DELETE"
+    })
+    .then(() => listarMusicas());
+}
+
+// Carregar ao abrir
+window.onload = listarMusicas;
