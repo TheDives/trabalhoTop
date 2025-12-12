@@ -43,6 +43,9 @@ public class Musica {
     private Genero genero;
 
     // Getters e Setters
+    public Musica() {
+    	
+    }
 
     public Musica (String tituloMusica, int dataLancamento, String nomeArtista, String capaUrl, String linkYoutube) {
     	this.tituloMusica = tituloMusica;
