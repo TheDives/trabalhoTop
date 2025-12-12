@@ -35,51 +35,76 @@ public class Musica {
     @Column(name = "capa_url")
     private String capaUrl;
     
+    @Column(name = "link_youtube")
+    private String linkYoutube;
+    
     @ManyToOne
     @JoinColumn(name = "id_genero")
     private Genero genero;
 
     // Getters e Setters
 
-    public Long getId() {
-        return id;
+    public Musica (String tituloMusica, int dataLancamento, String nomeArtista, String capaUrl, String linkYoutube) {
+    	this.tituloMusica = tituloMusica;
+    	this.dataLancamento = dataLancamento;
+    	this.nomeArtista = nomeArtista;
+    	this.capaUrl = capaUrl;
+    	this.linkYoutube = linkYoutube;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+	public Long getId() {
+		return id;
+	}
 
-    public String getTituloMusica() {
-        return tituloMusica;
-    }
+	public void setId(Long id) {
+		this.id = id;
+	}
 
-    public void setTituloMusica(String tituloMusica) {
-        this.tituloMusica = tituloMusica;
-    }
+	public String getTituloMusica() {
+		return tituloMusica;
+	}
 
+	public void setTituloMusica(String tituloMusica) {
+		this.tituloMusica = tituloMusica;
+	}
 
-    public int getDataLancamento() {
-        return dataLancamento;
-    }
+	public int getDataLancamento() {
+		return dataLancamento;
+	}
 
-    public void setDataLancamento(int dataLancamento) {
-        this.dataLancamento = dataLancamento;
-    }
+	public void setDataLancamento(int dataLancamento) {
+		this.dataLancamento = dataLancamento;
+	}
 
-    public String getNomeArtista() {
-        return nomeArtista;
-    }
+	public String getNomeArtista() {
+		return nomeArtista;
+	}
 
-    public void setNomeArtista(String nomeArtista) {
-        this.nomeArtista = nomeArtista;
-    }
+	public void setNomeArtista(String nomeArtista) {
+		this.nomeArtista = nomeArtista;
+	}
 
+	public String getCapaUrl() {
+		return capaUrl;
+	}
 
-    public String getCapaUrl() {
-        return capaUrl;
-    }
+	public void setCapaUrl(String capaUrl) {
+		this.capaUrl = capaUrl;
+	}
 
-    public void setCapaUrl(String capaUrl) {
-        this.capaUrl = capaUrl;
-    }
+	public String getLinkYoutube() {
+		return linkYoutube;
+	}
+
+	public void setLinkYoutube(String linkYoutube) {
+		this.linkYoutube = linkYoutube;
+	}
+
+	public Genero getGenero() {
+		return genero;
+	}
+
+	public void setGenero(Genero genero) {
+		this.genero = genero;
+	}
 }

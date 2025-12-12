@@ -115,19 +115,19 @@
 
 </div>
 
-<!-- janela para add musicas -->
-<div class="modal-bg" id="modal-bg">
+<!-- modal -->
+<div id="modal-bg" class="modal-bg">
   <div class="modal">
-    <h2>Adicione A Sua Música POP Favorita!</h2>
+    <h2>Adicionar Música</h2>
 
-    <input id="titulo" type="text" placeholder="Nome da Música" />
-    <input id="artista" type="text" placeholder="Artista" />
-    <input id="ano" type="number" placeholder="Ano(2000/2010)" min="2000" max="2010"/>
-    <input id="imagem" type="text" placeholder="URL da capa" />
-    <input id="link" type="text" placeholder="Link da música" />
+    <input id="titulo" placeholder="Título">
+    <input id="artista" placeholder="Artista">
+    <input id="ano" placeholder="Ano (2000-2010)" min="2000" max="2010">
+    <input id="imagem" placeholder="URL da Imagem">
+    <input id="link" placeholder="Link da Música">
 
-    <button onclick="addMusic()">Adicionar</button>
-    <button class="close-btn" onclick="closeModal()">Cancelar</button>
+    <button onclick="cadastrarMusica()">Salvar</button>
+    <button class="close-btn" onclick="closeModal()">Fechar</button>
   </div>
 </div>
 <script src="../script/hip-hop.js"></script>
