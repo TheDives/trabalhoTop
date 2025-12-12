@@ -119,27 +119,6 @@ function listar() {
         });
 }
 
-function listar() {
-    fetch("http://localhost:8080/api/filmes") // busca filmes
-        .then(res => res.json()) // converte JSON
-        .then(filmes => {
-            let html = ""; // html da listagem
-
-            filmes.forEach(f => { // percorre cada filme
-                html += `
-                  <div class="movie">
-                    <img src="${f.coverUrl}" alt="${f.title}"> <!-- capa -->
-                    <strong>${f.title}</strong> <br> <!-- título -->
-                    <em>${f.genre ? f.genre.name : ""}</em><br> <!-- gênero -->
-                    (${f.year || ""}) - ${f.director || ""} <!-- ano e diretor -->
-                  </div>
-                `;
-            });
-
-            document.getElementById("moviesList").innerHTML = html; // renderiza
-        });
-}
-
 //Remove uma música (DELETE).
 async function removerMusica(id, titulo) {
     if (!confirm(`Tem certeza que deseja remover a música "${titulo}"?`)) {
