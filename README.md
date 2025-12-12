@@ -101,15 +101,14 @@ spring.jpa.hibernate.ddl-auto=update
 
 ```json
 {
-  "id": 1,
-  "title": "Matrix",
-  "year": 1999,
-  "director": "Wachowski",
-  "coverUrl": "https://...jpg",
-  "genre": {
-    "id": 1,
-    "name": "Ação"
-  }
+"tituloMusica": "Kiss Kiss",
+"daraLancamento": 2007,
+"noneCantor": "Chris Brown, feat T-Pain",
+"capaUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGWVdnn0aC-jjku50rQLsrcdjS_Nz7eNT_Tw&s",
+"linkYoutube": null,
+"genero":{
+    "generoMusica": "R&B,
+    }
 }
 ```
 
@@ -139,15 +138,22 @@ spring.jpa.hibernate.ddl-auto=update
 
 # 🖥️ **Exemplos de Requisição**
 
-### **POST /filmes**
+### **POST /musicas**
 
 ```json
 {
-  "title": "Matrix",
-  "year": 1999,
-  "director": "Wachowski",
-  "coverUrl": "https://imagem.jpg",
-  "genre": { "id": 1 }
+  "tituloMusica": "Kiss Kiss",
+  "dataLancamento": 2007,
+  "nomeCantor": "Chris Brown",
+  "capaUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGWVdnn0aC-jjku50rQLsrcdjS_Nz7eNT_Tw&s",
+  "linkYoutube": null,
+  "genero": {
+    "generoMusica": "R&B"
+    "id": 3
+  }
+
+  "id": 97
+
 }
 ```
 
