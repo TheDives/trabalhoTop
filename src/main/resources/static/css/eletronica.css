@@ -9,6 +9,20 @@ body {
       background-attachment: fixed;
     }
 
+    .music-item-container {
+    position: relative;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.acoes {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.btn-edit { background-color: #ffc107; color: black; border: none; padding: 5px; cursor: pointer; }
+.btn-delete { background-color: #dc3545; color: white; border: none; padding: 5px; cursor: pointer; }
     .overlay {
       background: rgba(0,0,0,0.55);
       min-height: 100vh;
@@ -317,3 +331,18 @@ body {
        padding: 4px 6px;
       }
     }
+
+    .music-item-container {
+    position: relative;
+    border: 1px solid #ccc;
+    padding: 10px;
+}
+
+.acoes {
+    display: flex;
+    justify-content: space-around;
+    margin-top: 10px;
+}
+
+.btn-edit { background-color: #ffc107; color: black; border: none; padding: 5px; cursor: pointer; }
+.btn-delete { background-color: #dc3545; color: white; border: none; padding: 5px; cursor: pointer; }

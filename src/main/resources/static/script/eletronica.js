@@ -66,3 +66,105 @@ function limparFormulario() {
     document.getElementById('imagem').value = "";
     document.getElementById('link').value = "";
 }
+
+// Execute isso assim que a página carregar
+document.addEventListener("DOMContentLoaded", listarMusicas);
+
+function listarMusicas() {
+    fetch(API_URL)
+        .then(res => res.json())
+        .then(musicas => {
+            const grid = document.getElementById('musicGrid');
+            // Mantém apenas o botão de "Adicionar" no final, limpa o resto se necessário
+            grid.innerHTML = ""; 
+
+            musicas.forEach(m => {
+                grid.innerHTML += `
+                    <div class="music-item-container">
+                        <a class="music-item" href="${m.link}" target="_blank">
+                            <img src="${m.imagem}" alt="${m.titulo}">
+                            <figcaption>${m.titulo} - ${m.artista} (${m.ano})</figcaption>
+                        </a>
+                        <div class="acoes">
+                            <button class="btn-edit" onclick="openModal(${m.id})">Editar</button>
+                            <button class="btn-delete" onclick="excluirMusica(${m.id})">Excluir</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Adiciona o botão de "+" ao final
+            grid.innerHTML += `
+                <div class="music-item add-btn" onclick="openModal()" style="cursor:pointer;">
+                    <figcaption>+ Adicionar Música</figcaption>
+                </div>
+            `;
+        });
+}
+
+function excluirMusica(id) {
+    if (confirm("Tem certeza que deseja excluir esta música?")) {
+        fetch(`${API_URL}/${id}`, {
+            method: 'DELETE'
+        })
+        .then(res => {
+            if (res.ok) {
+                alert("Excluída com sucesso!");
+                listarMusicas(); // Atualiza a lista sem recarregar a página
+            } else {
+                alert("Erro ao excluir.");
+            }
+        });
+    }
+}
+
+// Execute isso assim que a página carregar
+document.addEventListener("DOMContentLoaded", listarMusicas);
+
+function listarMusicas() {
+    fetch(API_URL)
+        .then(res => res.json())
+        .then(musicas => {
+            const grid = document.getElementById('musicGrid');
+            // Mantém apenas o botão de "Adicionar" no final, limpa o resto se necessário
+            grid.innerHTML = ""; 
+
+            musicas.forEach(m => {
+                grid.innerHTML += `
+                    <div class="music-item-container">
+                        <a class="music-item" href="${m.link}" target="_blank">
+                            <img src="${m.imagem}" alt="${m.titulo}">
+                            <figcaption>${m.titulo} - ${m.artista} (${m.ano})</figcaption>
+                        </a>
+                        <div class="acoes">
+                            <button class="btn-edit" onclick="openModal(${m.id})">Editar</button>
+                            <button class="btn-delete" onclick="excluirMusica(${m.id})">Excluir</button>
+                        </div>
+                    </div>
+                `;
+            });
+
+            // Adiciona o botão de "+" ao final
+            grid.innerHTML += `
+                <div class="music-item add-btn" onclick="openModal()" style="cursor:pointer;">
+                    <figcaption>+ Adicionar Música</figcaption>
+                </div>
+            `;
+        });
+}
+
+function excluirMusica(id) {
+    if (confirm("Tem certeza que deseja excluir esta música?")) {
+        fetch(`${API_URL}/${id}`, {
+            method: 'DELETE'
+        })
+        .then(res => {
+            if (res.ok) {
+                alert("Excluída com sucesso!");
+                listarMusicas(); // Atualiza a lista sem recarregar a página
+            } else {
+                alert("Erro ao excluir.");
+            }
+        });
+    }
+}
