@@ -45,11 +45,13 @@ public class MusicaController {
 
 	@PutMapping("/{id}")
 	public ResponseEntity<Musica> atualizar(@PathVariable Long id, @RequestBody Musica musica) {
-		Musica musicaAtualizada = service.atualizar(id, musica);
-		if (musicaAtualizada != null) {
-			return ResponseEntity.ok(musicaAtualizada);
-		}
-		return ResponseEntity.notFound().build();
+	    // Garante que o ID do corpo seja o mesmo da URL para evitar duplicidade ou erro de JPA
+	    musica.setId(id); 
+	    Musica musicaAtualizada = service.atualizar(id, musica);
+	    if (musicaAtualizada != null) {
+	        return ResponseEntity.ok(musicaAtualizada);
+	    }
+	    return ResponseEntity.notFound().build();
 	}
 
 	@DeleteMapping("/{id}")
