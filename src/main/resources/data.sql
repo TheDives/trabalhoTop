@@ -1,25 +1,3 @@
-DROP DATABASE IF EXISTS db_lismelt;
-CREATE DATABASE db_lismelt;
-USE db_lismelt;
-
--- Criação das Tabelas
-CREATE TABLE tb_genero (
-    id_genero INT AUTO_INCREMENT PRIMARY KEY,
-    titulo_genero VARCHAR(100) NOT NULL
-);
-
-CREATE TABLE tb_musica (
-    id_musica INT AUTO_INCREMENT PRIMARY KEY,
-    nome_cantor VARCHAR(100) NOT NULL,
-    titulo_musica VARCHAR(100) NOT NULL,
-    data_lancamento YEAR,
-    capa_url VARCHAR(255), -- Aumentei para 255 pois links costumam ser grandes
-    link_youtube VARCHAR(255),
-    fk_genero INT,
-    CONSTRAINT fk_musica_genero FOREIGN KEY (fk_genero) REFERENCES tb_genero(id_genero)
-);
-
--- 2. Inserção de Gêneros
 INSERT INTO tb_genero (titulo_genero) VALUES 
 ('Pop'), ('Rock Alternativo'), ('R&b'), ('Hip-Hop'), 
 ('Dance/Eletronica'), ('Sertanejo'), ('Funk Carioca'), ('Reggae');
