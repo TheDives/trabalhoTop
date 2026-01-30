@@ -3,7 +3,7 @@ body {
       background: #000;
       color: white;
       font-family: "Poppins", sans-serif;
-      background-image: url("https://wallpapers.com/images/hd/hip-hop-background-bsqulcsor1zykhkp.jpg");
+      background-image: url("https://i.pinimg.com/1200x/67/d6/7d/67d67dc5b7bdbf5acb66373735e497c5.jpg");
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -33,7 +33,7 @@ body {
       padding: 12px 24px;
     }
 
-    .logo img {
+   .logo img {
     width: 60px;   /* AQUI você muda o tamanho */
     height: 60px;
     object-fit: cover;
@@ -61,28 +61,13 @@ body {
       border-color: rgba(255,255,255,0.6);
     }
 
-    .add-btn {
-      background: #1a121215;
-      border: 1px solid white;
-      color: white;
-      padding: 8px 14px;
-      border-radius: 50px;
-      cursor: pointer;
-      font-size: 14px;
-      transition: .3s;
-    }
-
-    .add-btn:hover {
-      background: white;
-      color: #0b0f18;
-    }
 
     h1 {
       text-align: center;
       font-size: 100px;
       margin-top: 40px;
       margin-bottom: 20px;
-      font-family: "Pinyon Script", cursive;
+      font-family: "Pinyon Script", cursive
     }
 
      .intro-container {
@@ -112,6 +97,7 @@ body {
         border: 1px solid rgba(255,255,255,0.2);
         object-fit: cover;
      }
+
 
     .music-grid {
       max-width: 1150px;
@@ -330,5 +316,4 @@ body {
        font-size: 11px;
        padding: 4px 6px;
       }
-
     }

@@ -3,7 +3,7 @@ body {
       background: #000;
       color: white;
       font-family: "Poppins", sans-serif;
-      background-image: url("https://i.pinimg.com/1200x/25/a5/af/25a5af09cf59ce766abc985bce232b13.jpg");
+      background-image: url("https://i.pinimg.com/1200x/67/d6/7d/67d67dc5b7bdbf5acb66373735e497c5.jpg");
       background-size: cover;
       background-position: center;
       background-attachment: fixed;
@@ -40,6 +40,7 @@ body {
     border-radius: 50%;
     border: 2px solid rgba(255,255,255,0.3);
 }
+
     .menu {
       display: flex;
       align-items: center;
@@ -60,28 +61,13 @@ body {
       border-color: rgba(255,255,255,0.6);
     }
 
-    .add-btn {
-      background: #1a121215;
-      border: 1px solid white;
-      color: white;
-      padding: 8px 14px;
-      border-radius: 50px;
-      cursor: pointer;
-      font-size: 14px;
-      transition: .3s;
-    }
-
-    .add-btn:hover {
-      background: white;
-      color: #0b0f18;
-    }
 
     h1 {
       text-align: center;
       font-size: 100px;
       margin-top: 40px;
       margin-bottom: 20px;
-      font-family: "Pinyon Script", cursive;
+      font-family: "Pinyon Script", cursive
     }
 
      .intro-container {
@@ -95,7 +81,7 @@ body {
   padding: 20px;
 }
 
-    .texto-sertanejo {
+    .texto-pop {
       flex: 1 1 42px;
       background: rgba(0,0,0,0.65);
       padding: 22px;
@@ -104,13 +90,14 @@ body {
       border: 1px solid rgba(255,255,255,0.15);
     }
 
-     .img-sertanejo-era img{
+     .img-pop-era img{
         width: 500px;
         height: 500px;
         border-radius: 14px;
         border: 1px solid rgba(255,255,255,0.2);
         object-fit: cover;
      }
+
 
     .music-grid {
       max-width: 1150px;
@@ -204,7 +191,7 @@ body {
     }
 
     .close-btn {
-      background: #141214 !important;
+      background: #ff4df6 !important;
       color: white !important;
       margin-top: 5px;
     }
